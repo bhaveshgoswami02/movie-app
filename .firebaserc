@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "movie-app0223": {
+      "hosting": {
+        "movie-app": [
+          "movie-app0223"
+        ]
+      }
+    }
+  }
+}

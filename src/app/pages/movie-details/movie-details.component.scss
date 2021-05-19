@@ -1,0 +1,57 @@
+.banner {
+    position: relative;
+}
+
+.banner-title {
+    font-size: 20px;
+    color: var(--primary-contrast);
+    margin-left: 20px;
+    margin-top: -50px;
+    font-weight: 600;
+}
+
+.description-section {
+    position: relative;
+    p {
+        text-transform: capitalize;
+        color: var(--primary-contrast);
+        font-size: 20px;
+        font-weight: 500;
+    }
+    a {
+        color: #1f80e0;
+        font: 12px!important;
+        font-weight: 400;
+    }
+    .year,.adult {
+        color: var(--secondary-contrast);
+        font-size: 12px;
+    }
+    .description {
+        font-size: 14px;
+        margin: 0;
+        color: var(--secondary-contrast);
+    }
+    .socail-icons{
+        color: #86888D;
+        font-size: 26px;
+    }
+}
+
+.seaction-heading {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+    margin: 0;
+}
+
+.thumbnail-container {
+    width: calc((100vw - 30px)/2);
+    img {       
+        border-radius: 5px;
+    }
+}
+
+.sub-heading {
+    font-size: 12px!important;
+}

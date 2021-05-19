@@ -1,0 +1,94 @@
+<!-- <div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Single Movie detail</h1>
+        </div>
+        <div class="col-md-6 my-2">
+            <div class="card" style="width: 18rem;">
+                <img src="{{imgUrl}}{{data.backdrop_path}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{data?.original_title}}</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the
+                        card's content.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<app-header></app-header>
+<br><br>
+
+<div class="banner">
+    <img src="{{imgUrl}}{{data.backdrop_path}}" class="w-100" alt="">
+    <div class="banner-footer">
+        <div class="banner-title">
+            <i class="fa fa-play"></i>&nbsp;&nbsp;<span>Watch Movie</span>
+        </div>
+    </div>
+</div>
+
+<div class="description-section p-2">
+    <div class="header mt-3">
+        <p class="m-0">{{data.original_title}}</p>
+        <p class="m-0">{{data.name}}</p>
+        <p class="m-0 text-muted sub-heading">{{data.tagline}}</p>
+        <a style="font-size: 12px;" class="mr-1" *ngFor="let genres of data.genres">{{genres.name}}</a>
+        <p style="margin-top: -10px;"><span class="year">{{data.release_date | date : 'mediumDate'}}</span> <span
+                *ngIf="data.status" class="year"> ({{data.status}})</span> <span class="adult" *ngIf="data.adult">.
+                18+</span></p>
+    </div>
+    <div class="description">
+        {{data.overview}}
+    </div>
+    <div class="socail-icons">
+        <i class="fa fa-plus mx-2"></i>
+        <i class="fa fa-facebook-square mx-2"></i>
+        <i class="fa fa-twitter mx-2"></i>
+        <i class="fa fa-link mx-2"></i>
+    </div>
+</div>
+
+<ng-container *ngIf="videos.results?.length>0">
+    <div class="container-fluid mt-2">
+        <p class="seaction-heading mb-1">Trailers & Extras</p>
+        <div class="items px-2">
+            <div class="thumbnail-container" *ngFor="let item of videos.results">
+                <img src="{{videoThumbmailFront}}{{item.key}}{{videoThumbmailBack}}" class="w-100" alt="">
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<ng-container *ngIf="similarData.length>0">
+    <div class="container-fluid mt-3">
+        <div class="row py-0">
+            <div class="col-8 text-left">
+                <p class="seaction-heading m-0">
+                    More Like This
+                </p>
+            </div>
+            <ng-container *ngIf="mediaType == 'mostRatedMovie' || mediaType == 'movie'">
+                <div class="col-4 text-right" routerLink="/media/moreLikeThis/movie/{{id}}">
+                    <a class="seaction-link">MORE</a>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="mediaType == 'mostReatedTv' || mediaType == 'tv'">
+                <div class="col-4 text-right" routerLink="/media/moreLikeThis/tv/{{id}}">
+                    <a class="seaction-link">MORE</a>
+                </div>
+            </ng-container>
+        </div>
+        <div class="row">
+            <div class="items px-2">
+                <div class="item" *ngFor="let similar of similarData">
+                    <img src="{{imgUrl}}{{similar.poster_path}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+
+<br><br><br>
+<app-tab></app-tab>
+<!-- <source src="https://www.themoviedb.org/video/play?key=eUW4ExaHNZA" type="video/mp4"> -->

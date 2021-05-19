@@ -1,0 +1,131 @@
+<br><br>
+<swiper [slidesPerView]="1" [slidesPerGroup]="1" [loop]="true" [autoplay]="true" [spaceBetween]="30"
+    [pagination]="false">
+    <ng-container *ngFor="let data of mostRatedMovie.results;">
+        <ng-template swiperSlide>
+            <img src="{{imgUrl}}{{data?.backdrop_path}}" routerLink="/detail/movie/{{data.id}}" class="w-100" alt="">
+        </ng-template>
+    </ng-container>
+</swiper>
+
+<div class="container-fluid my-3">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Popular Movies
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/popularMovies">MORE</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let data of popularMovies.results" routerLink="detail/movie/{{data.id}}">
+                <img src="{{imgUrl}}{{data.poster_path}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-3">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Latests & Trending
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/trending">MORE</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let latest of trending.results" routerLink="detail/movie/{{latest.id}}">
+                <img src="{{imgUrl}}{{latest.poster_path}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-3">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Upcomming Movies
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/upcommingMovies">MORE</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let upcomming of UpcommingMovies.results" routerLink="detail/mostRatedMovie/{{upcomming.id}}">
+                <img src="{{imgUrl}}{{upcomming.poster_path}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-3">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Most Rated Movies
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/mostRatedMovie">MORE</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let rated of mostRatedMovie.results" routerLink="detail/mostRatedMovie/{{rated.id}}">
+                <img src="{{imgUrl}}{{rated.poster_path}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-3">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Popular TV Shoes
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/popularTv">MORE</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let data of popularTv.results" routerLink="detail/tv/{{data.id}}">
+                <img src="{{imgUrl}}{{data.poster_path}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-3">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Most Rated TV
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/mostReatedTv">MORE</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let tv of mostRatedTv.results" routerLink="detail/mostReatedTv/{{tv.id}}">
+                <img src="{{imgUrl}}{{tv.poster_path}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>

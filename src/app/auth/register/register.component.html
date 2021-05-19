@@ -1,0 +1,15 @@
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+    <input type="text" name="name" ngModel placeholder="name" required>
+    <input type="email" name="email" placeholder="Enter Email" ngModel required>
+    <input type="password" name="password" placeholder="Enter password" ngModel required>
+    <div class="mb-3 form-check">
+        <input type="checkbox" class="form-check-input" name="isAdult" ngModel id="exampleCheck1" required>
+        <label class="form-check-label" for="exampleCheck1">is 18+</label>
+      </div>
+    <div class="col-12 text-center my-3">
+        <button [disabled]="loginForm.invalid" type="submit" color="primary">register</button>
+    </div>
+    <div class="col-12 text-center mb-3">
+        <a class="text-secondary text-decoration-none" routerLink="/auth">signin</a> <br>
+    </div>
+</form>

@@ -1,0 +1,52 @@
+<br><br>
+<swiper [slidesPerView]="1" [slidesPerGroup]="1" [loop]="true" [autoplay]="true" [spaceBetween]="30"
+    [pagination]="false">
+    <ng-container *ngFor="let data of popularTv.results;">
+        <ng-template swiperSlide>
+            <img src="{{imgUrl}}{{data?.backdrop_path}}" routerLink="/detail/tv/{{data.id}}" class="w-100" alt="">
+        </ng-template>
+    </ng-container>
+</swiper>
+
+
+<div class="container-fluid my-3">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Popular TV Shoes
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/popularTv">MORE</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let data of popularTv.results" routerLink="/detail/tv/{{data.id}}">
+                <img src="{{imgUrl}}{{data.poster_path}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container-fluid my-3">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Most Rated TV
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/mostReatedTv">MORE</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let tv of mostRatedTv.results" routerLink="/detail/mostReatedTv/{{tv.id}}">
+                <img src="{{imgUrl}}{{tv.poster_path}}" class="w-100">
+            </div>
+        </div>
+    </div>
+</div>
+
+<br><br>

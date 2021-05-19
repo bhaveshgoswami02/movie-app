@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+@import '~swiper/swiper-bundle';
+
+:root {
+    --primary: #0C111B;
+    --primary-contrast: #fff;
+    --secondary: #192133;
+    --secondary-contrast: rgba(255, 255, 255, 0.8);
+}
+
+body {
+    background-color: var(--primary);
+}
+
+.text-secondary {
+    color: var(--secondary-contrast)!important;
+}
+
+.items {
+    display: flex;
+    overflow-x: auto;
+}
+
+.items:-webkit-scrollbar {
+    display: none;
+}
+
+.items .item {
+    min-width: 120px;
+    text-align: center;
+    border-radius: 25px;
+    padding: 4px;
+}
+
+.items .item img {
+    width: 100%;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.seaction-heading {
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
+}
+
+.seaction-link {
+    font-size: 12px;
+    color: #1f80e0!important;
+    font-weight: 500;
+}
+
+i {
+    color: var(--secondary-contrast);
+}

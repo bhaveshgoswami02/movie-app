@@ -1,0 +1,32 @@
+<app-header></app-header>
+<br><br><br>
+
+<div class="container-fluid">
+    <div class="row px-2">
+        <div class="col-12 p-0 px-1">
+            <h2 class="title" *ngIf="mediaType=='trending'">Latest & Tranding</h2>
+            <h2 class="title" *ngIf="mediaType=='mostRatedMovie'">Most Rated Movie</h2>
+            <h2 class="title" *ngIf="mediaType=='mostReatedTv'">Most Reated Tv</h2>
+            <h2 class="title" *ngIf="mediaType=='upcommingMovies'">Upcomming Movies</h2>
+            <h2 class="title" *ngIf="mediaType=='popularTv'">Popular Tv</h2>
+            <h2 class="title" *ngIf="mediaType=='popularMovies'">Popular Movies</h2>
+            <h2 class="title" *ngIf="mediaType=='moreLikeThis'">More Like This</h2>
+        </div>
+        <ng-container
+            *ngIf="mediaType=='trending' || mediaType=='mostRatedMovie' || mediaType=='upcommingMovies' || mediaType=='popularMovies' || moreLikeType=='movie'">
+            <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData.results"
+                routerLink="/detail/movie/{{data.id}}">
+                <img src="{{imgUrl}}{{data.backdrop_path}}" class="w-100" style="border-radius: 5px;" alt="">
+            </div>
+        </ng-container>
+        <ng-container *ngIf="mediaType=='mostReatedTv' || mediaType=='popularTv' || moreLikeType=='tv'">
+            <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData.results"
+                routerLink="/detail/tv/{{data.id}}">
+                <img src="{{imgUrl}}{{data.backdrop_path}}" class="w-100" style="border-radius: 5px;" alt="">
+            </div>
+        </ng-container>
+    </div>
+</div>
+
+<br><br><br>
+<app-tab></app-tab>
