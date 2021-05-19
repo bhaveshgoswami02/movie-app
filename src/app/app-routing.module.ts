@@ -9,6 +9,8 @@ import { AllMoviesComponent } from './pages/all-movies/all-movies.component';
 import { AllTvComponent } from './pages/all-tv/all-tv.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SearchComponent } from './pages/search/search.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
@@ -18,6 +20,8 @@ const routes: Routes = [
   {path:'detail/:mediaType/:id',component:MovieDetailsComponent,canActivate:[AuthGuardService]},
   {path:'media/:mediaType',component:AllMediasComponent,canActivate:[AuthGuardService]},
   {path:'media/:mediaType/:moreLikeType/:id',component:AllMediasComponent,canActivate:[AuthGuardService]},
+  {path:'search',component:SearchComponent,canActivate:[AuthGuardService]},
+  {path:'profile',component:ProfileComponent,canActivate:[AuthGuardService]},
   {path:'auth',component:AuthComponent,children:[
     {path:'',component:SigninComponent},
     {path:'register',component:RegisterComponent},

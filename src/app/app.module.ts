@@ -21,6 +21,9 @@ import { TabComponent } from './share/tab/tab.component';
 import { AllMediasComponent } from './pages/all-medias/all-medias.component';
 import { AllTvComponent } from './pages/all-tv/all-tv.component';
 import { AllMoviesComponent } from './pages/all-movies/all-movies.component';
+import { SearchComponent } from './pages/search/search.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { SkeletonComponent } from './share/skeleton/skeleton.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +38,10 @@ import { AllMoviesComponent } from './pages/all-movies/all-movies.component';
     TabComponent,
     AllMediasComponent,
     AllTvComponent,
-    AllMoviesComponent
+    AllMoviesComponent,
+    SearchComponent,
+    ProfileComponent,
+    SkeletonComponent
   ],
   imports: [
     BrowserModule,
