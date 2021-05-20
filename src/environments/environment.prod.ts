@@ -4,6 +4,8 @@ export const environment = {
   imgUrl: "https://image.tmdb.org/t/p/w500",
   videoThumbmailFront: "https://i.ytimg.com/vi/",
   videoThumbmailBack: "/hqdefault.jpg",
+  language: "en-UK",
+  region: "GB",
   firebase: {
     apiKey: "AIzaSyD953xfGokglnPMBoGr4UU5c9UnRwzJ5Zg",
     authDomain: "movie-app0223.firebaseapp.com",

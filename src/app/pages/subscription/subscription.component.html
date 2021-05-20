@@ -7,34 +7,11 @@
         </div>
         <div class="col-12">
             <form>
-                <div class="form-check">
-                    <input class="form-check-input" id="1" name="subscription" type="checkbox" value="netflix" (click)="selectSubscription('netflix')">
-                    <label class="form-check-label" for="1">
-                        Netflix
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" id="2" type="checkbox" value="sky-go" name="subscription2" (click)="selectSubscription('sky-go')">
-                    <label class="form-check-label" for="2">
-                        Sky Go
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" id="3" type="checkbox" value="now-tv" name="subscription3" (click)="selectSubscription('now-tv')">
-                    <label class="form-check-label" for="3">
-                        Now TV
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" id="4" type="checkbox" value="amazon-video" name="subscription4" (click)="selectSubscription('amazon-video')">
-                    <label class="form-check-label" for="4">
-                        Amazon Video
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" id="5" type="checkbox" value="disney-plus" name="subscription5" (click)="selectSubscription('disney-plus')">
-                    <label class="form-check-label" for="5">
-                        Disney Plus
+                <div class="form-check" *ngFor="let plan of subscription;let i = index">
+                    <input class="form-check-input" [id]="plan.provider_id" [checked]="plan.isBuy" [name]="plan.provider_name" type="checkbox"
+                        (click)="selectSubscription(i)">
+                    <label class="form-check-label" [for]="plan.provider_id">
+                        {{plan.provider_name}}
                     </label>
                 </div>
                 <button type="button" (click)="onSubmit()" class="submit-button mt-3">

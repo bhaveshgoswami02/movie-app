@@ -7,8 +7,14 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-
-  constructor(public auth:AuthService) { }
+  subscriptions = [
+    { id: 1, title: "netflix", isSelected:false},
+    { id: 2, title: "netflix", isSelected:false},
+    { id: 3, title: "netflix", isSelected:false},
+    { id: 4, title: "netflix", isSelected:false},
+    { id: 5, title: "netflix", isSelected:false},
+  ]
+  constructor(public auth: AuthService) { }
 
   ngOnInit(): void {
   }

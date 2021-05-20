@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class TabComponent implements OnInit {
 
+  
   constructor(public router:Router) { }
 
   ngOnInit(): void {

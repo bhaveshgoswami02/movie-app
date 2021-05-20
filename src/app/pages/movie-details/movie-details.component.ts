@@ -20,6 +20,7 @@ export class MovieDetailsComponent implements OnInit {
   similarData: any = []
   episodeGroups: any = []
   youTubeLink: any = ""
+  providers: any = []
 
   constructor(public api: ApiService, public route: ActivatedRoute, public domSanitizer: DomSanitizer, public router: Router) { }
 
@@ -31,7 +32,7 @@ export class MovieDetailsComponent implements OnInit {
     if (id && mediaType) {
       this.router.navigateByUrl("/detail/" + mediaType + "/" + id)
       setTimeout(() => {
-        this.getData("","")
+        this.getData("", "")
       }, 500);
     }
     else {
@@ -43,11 +44,13 @@ export class MovieDetailsComponent implements OnInit {
         this.getMovieData()
         this.getMoviesVideo()
         this.getSimilarMovie()
+        this.getMovieProviders()
       } else if (this.mediaType == "mostReatedTv" || this.mediaType == "tv") {
         this.getTvData()
         this.getTvVideo()
         this.getSimilarTv()
         this.getEpisodeGroups()
+        this.getTvProviders()
       }
     }
   }
@@ -107,4 +110,20 @@ export class MovieDetailsComponent implements OnInit {
     this.youTubeLink = this.domSanitizer.bypassSecurityTrustResourceUrl(tempLink)
     console.log("youtubelink", this.youTubeLink)
   }
+
+  getMovieProviders() {
+    this.api.getMovieProviders(this.id).subscribe((res:any) => {
+      this.providers = res.results.GB
+      console.log("movie providers",this.providers)
+    })
+  }
+
+  getTvProviders() {
+    this.api.getTvProviders(this.id).subscribe((res:any) => {
+      this.providers = res.results.GB
+      console.log("tv providers",res)
+      console.log("tv providers",this.providers)
+    })
+  }
+
 }

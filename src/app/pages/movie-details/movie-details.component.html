@@ -30,8 +30,8 @@
 
 <div class="description-section p-2">
     <div class="header mt-3">
-        <p class="m-0">{{data.original_title}} <span>({{data.vote_average}}) <i style="color: #F7A300;" class="fa fa-star"></i></span></p>
-        <p class="m-0">{{data.name}}</p>
+        <p class="m-0">{{data.original_title ? data.original_title : data.name}} <span>({{data.vote_average}}) <i style="color: #F7A300;" class="fa fa-star"></i></span></p>
+        <!-- <p class="m-0">{{data.name}}</p> -->
         <p class="m-0 text-muted sub-heading">{{data.tagline}}</p>
         <a style="font-size: 12px;" class="mr-1" *ngFor="let genres of data.genres">{{genres.name}}</a>
         <p style="margin-top: -10px;"><span class="year">{{data.release_date | date : 'mediumDate'}}</span> <span
@@ -48,6 +48,17 @@
         <i class="fa fa-link mx-2"></i>
     </div>
 </div>
+
+<ng-container *ngIf="providers?.buy?.length>0">
+    <div class="container-fluid mt-2">
+        <p class="seaction-heading mb-1">Providers</p>
+        <div class="items">
+            <div class="thumbnail-container" *ngFor="let item of providers.buy">
+                <img src="{{imgUrl}}{{item.logo_path}}" class="w-100" alt="">
+            </div>
+        </div>
+    </div>
+</ng-container>
 
 <ng-container *ngIf="videos.results?.length>0">
     <div class="container-fluid mt-2">
