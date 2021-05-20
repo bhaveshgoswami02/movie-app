@@ -25,6 +25,8 @@ import { SearchComponent } from './pages/search/search.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SkeletonComponent } from './share/skeleton/skeleton.component';
 import { PagesComponent } from './pages/pages.component';
+import { LoaderComponent } from './share/loader/loader.component';
+import { ToastComponent } from './share/toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import { PagesComponent } from './pages/pages.component';
     SearchComponent,
     ProfileComponent,
     SkeletonComponent,
-    PagesComponent
+    PagesComponent,
+    LoaderComponent,
+    ToastComponent
   ],
   imports: [
     BrowserModule,

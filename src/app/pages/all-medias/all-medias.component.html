@@ -16,17 +16,28 @@
             *ngIf="mediaType=='trending' || mediaType=='mostRatedMovie' || mediaType=='upcommingMovies' || mediaType=='popularMovies' || moreLikeType=='movie'">
             <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData.results"
                 routerLink="/detail/movie/{{data.id}}">
-                <img src="{{imgUrl}}{{data.backdrop_path}}" class="w-100" style="border-radius: 5px;" alt="">
+                <img src="{{imgUrl}}{{data.backdrop_path}}" (load)="data.loader = true" [hidden]="!data.loader" class="w-100" style="border-radius: 5px;" alt="">
+                <ng-container *ngIf="!data.loader">
+                    <app-skeleton [skeleton]="'single-media'"></app-skeleton>
+                </ng-container>
             </div>
         </ng-container>
         <ng-container *ngIf="mediaType=='mostReatedTv' || mediaType=='popularTv' || moreLikeType=='tv'">
             <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData.results"
                 routerLink="/detail/tv/{{data.id}}">
-                <img src="{{imgUrl}}{{data.backdrop_path}}" class="w-100" style="border-radius: 5px;" alt="">
+                <img src="{{imgUrl}}{{data.backdrop_path}}" (load)="data.loader = true" [hidden]="!data.loader" class="w-100" style="border-radius: 5px;" alt="">
+                <ng-container *ngIf="!data.loader">
+                    <app-skeleton [skeleton]="'single-media'"></app-skeleton>
+                </ng-container>
             </div>
         </ng-container>
     </div>
 </div>
+<ng-container *ngIf="allData.length==0">
+    <div class="px-3">
+        <app-skeleton [skeleton]="'all-media'"></app-skeleton>
+    </div>
+</ng-container>
 
 <br><br><br>
 <app-tab></app-tab>

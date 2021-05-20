@@ -30,7 +30,7 @@
 
 <div class="description-section p-2">
     <div class="header mt-3">
-        <p class="m-0">{{data.original_title}}</p>
+        <p class="m-0">{{data.original_title}} <span>({{data.vote_average}}) <i style="color: #F7A300;" class="fa fa-star"></i></span></p>
         <p class="m-0">{{data.name}}</p>
         <p class="m-0 text-muted sub-heading">{{data.tagline}}</p>
         <a style="font-size: 12px;" class="mr-1" *ngFor="let genres of data.genres">{{genres.name}}</a>
@@ -82,9 +82,18 @@
         </div>
         <div class="row">
             <div class="items px-2">
-                <div class="item" *ngFor="let similar of similarData">
-                    <img src="{{imgUrl}}{{similar.poster_path}}">
-                </div>
+                <ng-container *ngIf="mediaType == 'mostReatedTv' || mediaType == 'tv'">
+                    <div class="item" *ngFor="let similar of similarData" (click)="getData(similar.id,mediaType)"
+                        routerLink="/detail/tv/{{similar.id}}">
+                        <img src="{{imgUrl}}{{similar.poster_path}}">
+                    </div>
+                </ng-container>
+                <ng-container *ngIf="mediaType == 'mostRatedMovie' || mediaType == 'movie'">
+                    <div class="item" *ngFor="let similar of similarData" (click)="getData(similar.id,mediaType)"
+                        routerLink="/detail/movie/{{similar.id}}">
+                        <img src="{{imgUrl}}{{similar.poster_path}}">
+                    </div>
+                </ng-container>
             </div>
         </div>
     </div>

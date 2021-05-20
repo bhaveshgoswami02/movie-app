@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
 import { environment } from 'src/environments/environment';
 
@@ -21,22 +21,34 @@ export class MovieDetailsComponent implements OnInit {
   episodeGroups: any = []
   youTubeLink: any = ""
 
-  constructor(public api: ApiService, public route: ActivatedRoute, public domSanitizer: DomSanitizer) { }
+  constructor(public api: ApiService, public route: ActivatedRoute, public domSanitizer: DomSanitizer, public router: Router) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.paramMap.get("id")
-    this.mediaType = this.route.snapshot.paramMap.get("mediaType")
-    console.log("id", this.id)
-    console.log("media type", this.mediaType)
-    if (this.mediaType == "mostRatedMovie" || this.mediaType == "movie") {
-      this.getMovieData()
-      this.getMoviesVideo()
-      this.getSimilarMovie()
-    } else if (this.mediaType == "mostReatedTv" || this.mediaType == "tv") {
-      this.getTvData()
-      this.getTvVideo()
-      this.getSimilarTv()
-      this.getEpisodeGroups()
+    this.getData("", "")
+  }
+
+  getData(id: string, mediaType: string) {
+    if (id && mediaType) {
+      this.router.navigateByUrl("/detail/" + mediaType + "/" + id)
+      setTimeout(() => {
+        this.getData("","")
+      }, 500);
+    }
+    else {
+      this.id = this.route.snapshot.paramMap.get("id")
+      this.mediaType = this.route.snapshot.paramMap.get("mediaType")
+      console.log("id", this.id)
+      console.log("media type", this.mediaType)
+      if (this.mediaType == "mostRatedMovie" || this.mediaType == "movie") {
+        this.getMovieData()
+        this.getMoviesVideo()
+        this.getSimilarMovie()
+      } else if (this.mediaType == "mostReatedTv" || this.mediaType == "tv") {
+        this.getTvData()
+        this.getTvVideo()
+        this.getSimilarTv()
+        this.getEpisodeGroups()
+      }
     }
   }
 
@@ -89,10 +101,10 @@ export class MovieDetailsComponent implements OnInit {
     })
   }
 
-  openModal(key:string) {
-    let tempLink = "https://www.youtube.com/embed/"+key
-    console.log("templink",tempLink)
+  openModal(key: string) {
+    let tempLink = "https://www.youtube.com/embed/" + key
+    console.log("templink", tempLink)
     this.youTubeLink = this.domSanitizer.bypassSecurityTrustResourceUrl(tempLink)
-    console.log("youtubelink",this.youTubeLink)
+    console.log("youtubelink", this.youTubeLink)
   }
 }

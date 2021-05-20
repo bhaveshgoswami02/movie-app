@@ -16,6 +16,11 @@ body {
     color: var(--secondary-contrast)!important;
 }
 
+.bg-primary {
+    background-color: var(--primary)!important;
+    color: var(--primary-contrast)!important;
+}
+
 .items {
     display: flex;
     overflow-x: auto;
@@ -234,6 +239,12 @@ i {
 .p-skeleton__body--r-banner {
     max-width: 100%;
     min-height: 200px;
+    background: #192133;
+}
+
+.p-skeleton__body--r-all-media {
+    max-width: 100%;
+    min-height: 90px;
     background: #192133;
 }
 

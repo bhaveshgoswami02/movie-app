@@ -121,8 +121,9 @@ export class ApiService {
     return this.http.get(url)
   }
 
-  search(data: any) {
-
+  search(queryParams: any) {
+    let url = "https://api.themoviedb.org/3/search/multi?api_key="+ environment.api +"&language=en-US&query=" + queryParams +"&page=1&include_adult=false"
+    return this.http.get(url)
   }
 
 
