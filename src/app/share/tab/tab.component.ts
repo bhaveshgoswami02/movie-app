@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TabComponent implements OnInit {
 
-  constructor() { }
+  constructor(public router:Router) { }
 
   ngOnInit(): void {
   }
 
+  routing(route:string) {
+    this.router.navigateByUrl("/"+route)
+  }
 }

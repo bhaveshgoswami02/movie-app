@@ -23,7 +23,7 @@
         <!-- <p class="text-white my-1">Logo</p> -->
     </a>
 
-    <i class="fa fa-search" routerLink="/search"></i>
+    <i class="fa fa-search" (click)="routing('/search')"></i>
 </nav>
 
 
@@ -34,7 +34,7 @@
             <div class="row">
                 <div class="col-9 bg-primary p-0" style="height: 100vh;">
                     <ng-container *ngIf="!authService.getCustomer()">
-                        <div class="row" routerLink="/auth">
+                        <div class="row" (click)="routing('/auth')">
                             <div class="col-10 mx-auto">
                                 <p class="msg-1 ml-4">Login</p>
                                 <p class="msg-2 ml-4">For a better experience</p>
@@ -71,19 +71,19 @@
                     </ng-container>
                     <hr class="m-0">
                     <ul class="p-0">
-                        <li (click)="toggle()" routerLink="/" style="list-style-type: none;" class="py-2 px-4">
+                        <li (click)="routing('')" style="list-style-type: none;" class="py-2 px-4">
                             <p class="pl-1 mb-0">
                                 &nbsp;&nbsp; Home
                             </p>
                         </li>
                         <hr class="m-0">
-                        <li (click)="toggle()" routerLink="/tv" style="list-style-type: none;" class="py-2 px-4">
+                        <li (click)="routing('/tv')" style="list-style-type: none;" class="py-2 px-4">
                             <p class="pl-1  mb-0">
                                 &nbsp;&nbsp; T.V.
                             </p>
                         </li>
                         <hr class="m-0">
-                        <li routerLink="/movies" style="list-style-type: none;" class="py-2 px-4">
+                        <li (click)="routing('/movies')" style="list-style-type: none;" class="py-2 px-4">
                             <p class="pl-1 mb-0">
                                 &nbsp;&nbsp; Movie
                             </p>

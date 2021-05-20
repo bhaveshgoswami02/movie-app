@@ -1,22 +1,22 @@
 <div class="container-fluid tab-container">
     <div class="row">
-        <div class="col-2 tab-section mx-auto my-2" routerLink="/">
+        <div class="col-2 tab-section mx-auto my-2" (click)="routing('')">
             <i class="fa fa-home active"></i>
             <p>Home</p>
         </div>
-        <div class="col-2 tab-section mx-auto my-2" routerLink="/tv">
+        <div class="col-2 tab-section mx-auto my-2" (click)="routing('tv')">
             <i class="fa fa-television"></i>
             <p>TV</p>
         </div>
-        <div class="col-3 mx-auto my-2" routerLink="/">
+        <div class="col-3 mx-auto my-2" (click)="routing('')">
             <img src="https://www.hotstar.com/assets/b50f06bb7daf1f895483b259df7c5912.svg" class="w-100" alt="">
             <!-- <p class="text-white text-center">Logo</p> -->
         </div>
-        <div class="col-2 tab-section mx-auto my-2" routerLink="/movies">
+        <div class="col-2 tab-section mx-auto my-2" (click)="routing('movies')">
             <i class="fa fa-film"></i>
             <p>Movies</p>
         </div>
-        <div class="col-2 tab-section mx-auto my-2" routerLink="/profile">
+        <div class="col-2 tab-section mx-auto my-2" (click)="routing('profile')">
             <i class="fa fa-user"></i>
             <p>Profile</p>
         </div>

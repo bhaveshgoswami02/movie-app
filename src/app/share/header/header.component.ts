@@ -37,4 +37,8 @@ export class HeaderComponent implements OnInit {
     this.toggle()
   }
 
+  routing(route:string) {
+    this.router.navigateByUrl("/"+route)
+    this.toggle()
+  }
 }
