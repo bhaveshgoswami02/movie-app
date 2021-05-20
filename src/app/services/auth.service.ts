@@ -4,13 +4,14 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import firebase from 'firebase';
 import { map } from 'rxjs/operators';
+import { CommonService } from './common.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(public afauth: AngularFireAuth, public db: AngularFirestore, public router: Router) {
+  constructor(public afauth: AngularFireAuth, public db: AngularFirestore, public router: Router,public common:CommonService) {
     this.afauth.authState.subscribe(res => {
       if (res) {
         if (!res.emailVerified) {
@@ -33,7 +34,7 @@ export class AuthService {
   }
 
   signin(data: any) {
-    // this.common.startLoader()
+    this.common.startLoader()
     return this.afauth.signInWithEmailAndPassword(data.email, data.password).then((res: any) => {
       console.log("sigin response", res)
       if (res.user.emailVerified) {
@@ -41,23 +42,23 @@ export class AuthService {
           console.log(userRes)
           localStorage.setItem("customer", JSON.stringify(userRes))
           localStorage.setItem('uid', res.user.uid)
+          this.common.stopLoader()
           this.router.navigateByUrl("/")
         })
       }
       else {
         this.sendCode()
         this.logout()
-        // this.common.stopLoader()
+        this.common.stopLoader()
       }
     }).catch(err => {
-      alert(err.message)
-      // this.common.toast(err.message)
-      // this.common.stopLoader()
+      this.common.showToast(err.message)
+      this.common.stopLoader()
     })
   }
 
   signup(data: any) {
-    // this.common.startLoader()
+    this.common.startLoader()
     return this.afauth.createUserWithEmailAndPassword(data.email, data.password).then((res: any) => {
       console.log("signup res", res)
       let timestamp = firebase.firestore.Timestamp.now()
@@ -66,10 +67,9 @@ export class AuthService {
       this.setUserInDb(tempData)
       this.sendCode()
     }).catch(err => {
-      alert(err)
-      console.log("signup error", err)
+      this.common.showToast(err)
     }).finally(() => {
-      // this.common.stopLoader()
+      this.common.stopLoader()
     })
   }
 
@@ -77,16 +77,15 @@ export class AuthService {
     return this.db.collection("users").doc(data.uid).set(data)
   }
 
-  updateUser(id: string, data: any) {
-    console.log(data, id)
+  updateUser(id: any, data: any) {
+    console.log("id",id,"data",data)
     return this.db.collection("users").doc(id).update(data)
   }
 
   sendCode() {
     this.afauth.currentUser.then((res: any) => {
       res.sendEmailVerification().then((verificationRes: any) => {
-        // this.common.toast("Please Verify your email! Check your inbox!")
-        alert("Please Verify your email! Check your inbox!")
+        this.common.showToast("Please Verify your email! Check your inbox!")
         this.router.navigateByUrl("/auth")
       })
     })
@@ -110,7 +109,7 @@ export class AuthService {
     )
   }
 
-  getUserDataFromDb(uid: string) {
+  getUserDataFromDb(uid: any) {
     return this.db.collection("users").doc(uid).get().pipe(
       map(a => {
         const data = a.data() as any;
@@ -121,15 +120,15 @@ export class AuthService {
   }
 
   resetPassword(email: any) {
-    // this.common.startLoader()
+    this.common.startLoader()
     this.afauth.sendPasswordResetEmail(email).then(res => {
-      // this.common.toast("Please Check Your Email!")
+      this.common.showToast("Please Check Your Email!")
       this.router.navigateByUrl("/auth")
-      // this.common.stopLoader()
+      this.common.stopLoader()
     }).catch(err => {
       console.log(err)
-      // this.common.toast(err)
-      // this.common.stopLoader()
+      this.common.showToast(err)
+      this.common.stopLoader()
     })
   }
 
@@ -138,7 +137,7 @@ export class AuthService {
     localStorage.removeItem("customer")
     this.router.navigateByUrl("/auth")
     this.afauth.signOut()
-    // this.common.toast("Logout Successful!")
+    this.common.showToast("Logout Successful!")
   }
 
 }

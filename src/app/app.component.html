@@ -1,1 +1,6 @@
+<app-loader *ngIf="common.loader"></app-loader>
+<ng-container *ngIf="common.toastTitle">
+    <app-toast *ngIf="common.toastTitle" [title]="common.toastTitle"></app-toast>
+</ng-container>
 <router-outlet></router-outlet>
+<!-- <app-tab></app-tab> -->

@@ -4,10 +4,30 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class CommonService {
+  loader:boolean = false
+  toastTitle:string = ""
 
-  constructor() { }
+  constructor() {
+  }
 
   goBack() {
     window.history.back()
+  }
+
+  startLoader() {
+    this.loader = true
+  }
+
+  stopLoader() {
+    this.loader = false
+  }
+
+  showToast(title:any) {
+    this.toastTitle = title
+    console.log(this.toastTitle)
+    setTimeout(() => {
+      this.toastTitle = ""
+      console.log("toast title timeout",this.toastTitle)
+    }, 3000);
   }
 }

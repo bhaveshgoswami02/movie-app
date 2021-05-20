@@ -1,0 +1,43 @@
+<app-header></app-header>
+<div class="sign-in">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="pnl-manager">
+                        <div class="login-container">
+                            <div class="heading"><span class="heading-text">Update User</span><br><span
+                                    class="subheading-text"></span><br></div>
+                            <div class="phone-number-container">
+                                <div class="phone-input">
+                                    <div class="form-group material-input">
+                                        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+                                            <input type="test" name="name" class="form-control"
+                                                placeholder="Enter Your Name" [ngModel]="data.name" required>
+                                            <input type="email" name="email" class="form-control"
+                                                placeholder="Enter Your Email" [ngModel]="data.email" readonly required>
+                                            <div class="mb-3 form-check">
+                                                <input type="checkbox" class="form-check-input" name="isAdult" [ngModel]="data.isAdult"
+                                                    id="adult" required>
+                                                <label class="form-check-label" for="adult">Is Your age is above
+                                                    18+?</label>
+                                            </div>
+                                            <button type="submit" class="submit-button mt-2">
+                                                Update
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 text-center my-1">
+                    <span class="auth-link">
+                        <a routerLink="/auth">Already have account?</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

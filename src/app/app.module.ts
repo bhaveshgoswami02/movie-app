@@ -27,6 +27,8 @@ import { SkeletonComponent } from './share/skeleton/skeleton.component';
 import { PagesComponent } from './pages/pages.component';
 import { LoaderComponent } from './share/loader/loader.component';
 import { ToastComponent } from './share/toast/toast.component';
+import { SubscriptionComponent } from './pages/subscription/subscription.component';
+import { EditProfileComponent } from './pages/edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +49,9 @@ import { ToastComponent } from './share/toast/toast.component';
     SkeletonComponent,
     PagesComponent,
     LoaderComponent,
-    ToastComponent
+    ToastComponent,
+    SubscriptionComponent,
+    EditProfileComponent
   ],
   imports: [
     BrowserModule,
