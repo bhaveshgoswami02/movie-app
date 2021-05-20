@@ -9,19 +9,22 @@ import { AllMoviesComponent } from './pages/all-movies/all-movies.component';
 import { AllTvComponent } from './pages/all-tv/all-tv.component';
 import { HomeComponent } from './pages/home/home.component';
 import { MovieDetailsComponent } from './pages/movie-details/movie-details.component';
+import { PagesComponent } from './pages/pages.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SearchComponent } from './pages/search/search.component';
 import { AuthGuardService } from './services/auth-guard.service';
 
 const routes: Routes = [
-  {path:'',component:HomeComponent,canActivate:[AuthGuardService]},
-  {path:'tv',component:AllTvComponent,canActivate:[AuthGuardService]},
-  {path:'movies',component:AllMoviesComponent,canActivate:[AuthGuardService]},
-  {path:'detail/:mediaType/:id',component:MovieDetailsComponent,canActivate:[AuthGuardService]},
-  {path:'media/:mediaType',component:AllMediasComponent,canActivate:[AuthGuardService]},
-  {path:'media/:mediaType/:moreLikeType/:id',component:AllMediasComponent,canActivate:[AuthGuardService]},
-  {path:'search',component:SearchComponent,canActivate:[AuthGuardService]},
-  {path:'profile',component:ProfileComponent,canActivate:[AuthGuardService]},
+  {path:'',component:PagesComponent,canActivate:[AuthGuardService],children:[
+    {path:'',component:HomeComponent},
+    {path:'tv',component:AllTvComponent},
+    {path:'movies',component:AllMoviesComponent},
+    {path:'detail/:mediaType/:id',component:MovieDetailsComponent},
+    {path:'media/:mediaType',component:AllMediasComponent},
+    {path:'media/:mediaType/:moreLikeType/:id',component:AllMediasComponent},
+    {path:'search',component:SearchComponent},
+    {path:'profile',component:ProfileComponent},
+  ]},
   {path:'auth',component:AuthComponent,children:[
     {path:'',component:SigninComponent},
     {path:'register',component:RegisterComponent},

@@ -24,6 +24,7 @@ import { AllMoviesComponent } from './pages/all-movies/all-movies.component';
 import { SearchComponent } from './pages/search/search.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { SkeletonComponent } from './share/skeleton/skeleton.component';
+import { PagesComponent } from './pages/pages.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { SkeletonComponent } from './share/skeleton/skeleton.component';
     AllMoviesComponent,
     SearchComponent,
     ProfileComponent,
-    SkeletonComponent
+    SkeletonComponent,
+    PagesComponent
   ],
   imports: [
     BrowserModule,

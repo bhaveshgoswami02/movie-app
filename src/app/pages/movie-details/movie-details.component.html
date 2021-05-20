@@ -52,8 +52,9 @@
 <ng-container *ngIf="videos.results?.length>0">
     <div class="container-fluid mt-2">
         <p class="seaction-heading mb-1">Trailers & Extras</p>
-        <div class="items px-2">
-            <div class="thumbnail-container" *ngFor="let item of videos.results">
+        <div class="items">
+            <div class="thumbnail-container" *ngFor="let item of videos.results" data-toggle="modal"
+                data-target="#exampleModal" (click)="openModal(item.key)">
                 <img src="{{videoThumbmailFront}}{{item.key}}{{videoThumbmailBack}}" class="w-100" alt="">
             </div>
         </div>
@@ -89,6 +90,22 @@
     </div>
 </ng-container>
 
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Watch</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <iframe [src]="youTubeLink" width="100%" height="200" frameborder="0"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 <br><br><br>
 <app-tab></app-tab>
 <!-- <source src="https://www.themoviedb.org/video/play?key=eUW4ExaHNZA" type="video/mp4"> -->

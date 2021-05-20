@@ -1,11 +1,41 @@
-<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
-    <input type="email" name="email" placeholder="Enter Email" ngModel required>
-    <input type="password" name="password" placeholder="Enter password" ngModel required>
-    <div class="col-12 text-center my-3">
-        <button [disabled]="loginForm.invalid" type="submit" color="primary">Signin</button>
+<div class="sign-in">
+    <div class="content-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="pnl-manager">
+                        <div class="login-container">
+                            <div class="heading"><span class="heading-text">Login using email</span><br><span
+                                    class="subheading-text"></span><br></div>
+                            <div class="phone-number-container">
+                                <div class="phone-input">
+                                    <div class="form-group material-input">
+                                        <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+                                            <input type="email" name="email" class="form-control"
+                                                placeholder="Enter Your Email" ngModel required>
+                                            <input type="password" name="password" class="form-control"
+                                                placeholder="Enter Your Password" ngModel required>
+                                                <button type="submit" class="submit-button mt-2">
+                                                    Continue
+                                                    <i class="fa fa-angle-right"></i>
+                                                </button>
+                                        </form>
+                                        <div class="attest-message"><span class="attest-message-text">By Proceeding you agree to
+                                                the <a href="#">Terms of use</a> and <a href="#">Privacy policy</a></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 text-center my-1">
+                    <span class="auth-link">
+                        <a routerLink="/auth/register">Create New Account?</a> <br>
+                        <a routerLink="/auth/forgot-password">Forgot Password?</a>
+                    </span>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="col-12 text-center mb-3">
-        <a class="text-secondary text-decoration-none" routerLink="/auth/register">Create Account</a> <br>
-        <a class="text-secondary text-decoration-none" routerLink="/auth/forgot-password">Forgot Password?</a>
-    </div>
-</form>
+</div>
