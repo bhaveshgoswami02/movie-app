@@ -52,6 +52,7 @@
             <div class="col-6 my-2 p-0 px-2" *ngFor="let data of allData.results"
                 routerLink="/detail/{{data.media_type}}/{{data.id}}">
                 <img src="{{imgUrl}}{{data.backdrop_path}}" (load)="data.loader = true" [hidden]="!data.loader" class="w-100" style="border-radius: 5px;" alt="">
+                <!-- <p class="text-white m-0">{{data.name}}</p> -->
                 <ng-container *ngIf="!data.loader">
                     <app-skeleton [skeleton]="'single-media'"></app-skeleton>
                 </ng-container>

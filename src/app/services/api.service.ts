@@ -12,12 +12,12 @@ export class ApiService {
 
   //-------------------------------- Movies' Functions -------------------------------//
   getLatestMovies(): Observable<Object> {
-    let url = "https://api.themoviedb.org/3/movie/latest?api_key=" + environment.api + "&language=" + environment.language
+    let url = "https://api.themoviedb.org/3/movie/latest?api_key=" + environment.api + "&language=" + environment.language + "&regions=" + environment.region
     return this.http.get(url)
   }
 
   getMostRatedMovie() {
-    let url = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + environment.api + "&language=" + environment.language + "/" + environment.region
+    let url = "https://api.themoviedb.org/3/movie/top_rated?api_key=" + environment.api + "&language=" + environment.language + "&regions=" + environment.region
     return this.http.get(url)
   }
 
@@ -32,22 +32,22 @@ export class ApiService {
   }
 
   getMovieVideo(movieId: string) {
-    let url = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?api_key=" + environment.api + "&language=" + environment.language
+    let url = "https://api.themoviedb.org/3/movie/" + movieId + "/videos?api_key=" + environment.api + "&language=" + environment.language + "&regions=" + environment.region
     return this.http.get(url)
   }
 
   getSimilarMovies(movieId: string) {
-    let url = "https://api.themoviedb.org/3/movie/" + movieId + "/similar?api_key=" + environment.api + "&language=" + environment.language + "&page=1"
+    let url = "https://api.themoviedb.org/3/movie/" + movieId + "/similar?api_key=" + environment.api + "&language=" + environment.language + "&page=1" + "&regions=" + environment.region
     return this.http.get(url)
   }
 
   getUpcommingMovies() {
-    let url = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + environment.api + "&language=" + environment.language + "&page=1" + "/" + environment.region
+    let url = "https://api.themoviedb.org/3/movie/upcoming?api_key=" + environment.api + "&language=" + environment.language + "&page=1"+ "&regions=" + environment.region
     return this.http.get(url)
   }
 
   getPopularMovie() {
-    let url = "https://api.themoviedb.org/3/movie/popular?api_key=" + environment.api + "&language=" + environment.language + "&page=1" + "/" + environment.region
+    let url = "https://api.themoviedb.org/3/movie/popular?api_key=" + environment.api + "&language=" + environment.language + "&page=1" + "&region=" + environment.region
     return this.http.get(url)
   }
   
@@ -61,12 +61,12 @@ export class ApiService {
   //-------------------------------- TV's Fucntions -------------------------------//
 
   getLatestTv(): Observable<Object> {
-    let url = "https://api.themoviedb.org/3/tv/latest?api_key=" + environment.api + "&language=" + environment.language
+    let url = "https://api.themoviedb.org/3/tv/latest?api_key=" + environment.api + "&language=" + environment.language + "&regions=" + environment.region
     return this.http.get(url)
   }
 
   getMostRatedTv() {
-    let url = "https://api.themoviedb.org/3/tv/top_rated?api_key=" + environment.api + "&language=" + environment.language + "/" + environment.region
+    let url = "https://api.themoviedb.org/3/tv/top_rated?api_key=" + environment.api + "&language=" + environment.language + "&regions=" + environment.region
     return this.http.get(url)
   }
 
@@ -81,17 +81,17 @@ export class ApiService {
   }
 
   getTvVideo(tvId: string) {
-    let url = "https://api.themoviedb.org/3/tv/" + tvId + "/videos?api_key=" + environment.api + "&language=" + environment.language
+    let url = "https://api.themoviedb.org/3/tv/" + tvId + "/videos?api_key=" + environment.api + "&language=" + environment.language +"&regions=" + environment.region
     return this.http.get(url)
   }
 
   getSimilarTv(tvId: string) {
-    let url = "https://api.themoviedb.org/3/tv/" + tvId + "/similar?api_key=" + environment.api + "&language=" + environment.language + "&page=1"
+    let url = "https://api.themoviedb.org/3/tv/" + tvId + "/similar?api_key=" + environment.api + "&language=" + environment.language + "&regions=" + environment.region + "&page=1"
     return this.http.get(url)
   }
 
   getPopularTv() {
-    let url = "https://api.themoviedb.org/3/tv/popular?api_key=" + environment.api + "&language=" + environment.language + "&page=1" + "/" + environment.region
+    let url = "https://api.themoviedb.org/3/tv/popular?api_key=" + environment.api + "&language=" + environment.language + "&regions=" + environment.region +"&page=1"
     return this.http.get(url)
   }
 
@@ -126,7 +126,7 @@ export class ApiService {
   }
 
   search(queryParams: any) {
-    let url = "https://api.themoviedb.org/3/search/multi?api_key=" + environment.api + "&language="+ environment.language +"&query=" + queryParams + "&page=1&include_adult=false"
+    let url = "https://api.themoviedb.org/3/search/multi?api_key=" + environment.api + "&language="+ environment.language +"&query=" + queryParams + "&regions=" + environment.region +"&page=1&include_adult=false"
     return this.http.get(url)
   }
 
