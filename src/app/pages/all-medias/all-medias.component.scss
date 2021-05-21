@@ -4,3 +4,12 @@
     padding: 0px;
     color: var(--secondary-contrast);
 }
+
+.container {
+    min-height: 100vh;
+}
+
+.search-results {
+    height: 10rem;
+    overflow: scroll;
+}

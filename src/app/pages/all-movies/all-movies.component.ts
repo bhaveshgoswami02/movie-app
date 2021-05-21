@@ -25,7 +25,7 @@ export class AllMoviesComponent implements OnInit {
   popularMovies:any = []
   imgUrl:string = environment.imgUrl
   allData:any = []
-
+  page:number = 1
   constructor(public apiService:ApiService) { }
 
   ngOnInit(): void {
@@ -43,21 +43,21 @@ export class AllMoviesComponent implements OnInit {
   }
 
   getMostRatedMovie() {
-    this.apiService.getMostRatedMovie().subscribe(res=>{
+    this.apiService.getMostRatedMovie(this.page).subscribe(res=>{
       this.mostRatedMovie = res
       console.log("Most Rated Movie",this.mostRatedMovie)
     })
   }
 
   getUpcommingMovies() {
-    this.apiService.getUpcommingMovies().subscribe(res=>{
+    this.apiService.getUpcommingMovies(this.page).subscribe(res=>{
       this.UpcommingMovies = res
       console.log("UpcommingMovies",this.UpcommingMovies)
     })
   }
 
   getPopularMovie() {
-    this.apiService.getPopularMovie().subscribe(res=>{
+    this.apiService.getPopularMovie(this.page).subscribe(res=>{
       this.popularMovies = res
       console.log("popularMovies",this.UpcommingMovies)
     })

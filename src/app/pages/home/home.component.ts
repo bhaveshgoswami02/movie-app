@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   popularTv:any = []
   imgUrl:string = environment.imgUrl
   allData:any = []
-
+  page:number = 1
   constructor(public apiService:ApiService) { }
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
   }
 
   getMostRatedMovie() {
-    this.apiService.getMostRatedMovie().subscribe(res=>{
+    this.apiService.getMostRatedMovie(this.page).subscribe(res=>{
       this.mostRatedMovie = res
       console.log("Most Rated Movie",this.mostRatedMovie)
     })
@@ -66,35 +66,35 @@ export class HomeComponent implements OnInit {
   }
 
   getMostRatedTv() {
-    this.apiService.getMostRatedTv().subscribe(res=>{
+    this.apiService.getMostRatedTv(this.page).subscribe(res=>{
       this.mostRatedTv = res
       console.log("Most Rated TV",this.mostRatedTv)
     })
   }
   
   getTrending() {
-    this.apiService.getTrending().subscribe(res=>{
+    this.apiService.getTrending(this.page).subscribe(res=>{
       this.trending = res
       console.log("trending",this.trending)
     })
   }
 
   getUpcommingMovies() {
-    this.apiService.getUpcommingMovies().subscribe(res=>{
+    this.apiService.getUpcommingMovies(this.page).subscribe(res=>{
       this.UpcommingMovies = res
       console.log("UpcommingMovies",this.UpcommingMovies)
     })
   }
 
   getPopularMovie() {
-    this.apiService.getPopularMovie().subscribe(res=>{
+    this.apiService.getPopularMovie(this.page).subscribe(res=>{
       this.popularMovies = res
       console.log("popularMovies",this.UpcommingMovies)
     })
   }
 
   getPopularTv() {
-    this.apiService.getPopularTv().subscribe(res=>{
+    this.apiService.getPopularTv(this.page).subscribe(res=>{
       this.popularTv = res
       console.log("popularTv",this.popularTv)
     })

@@ -24,7 +24,7 @@ export class AllTvComponent implements OnInit {
   popularTv:any = []
   imgUrl:string = environment.imgUrl
   allData:any = []
-
+  page:number = 1
   constructor(public apiService:ApiService) { }
 
   ngOnInit(): void {
@@ -42,14 +42,14 @@ export class AllTvComponent implements OnInit {
   }
 
   getMostRatedTv() {
-    this.apiService.getMostRatedTv().subscribe(res=>{
+    this.apiService.getMostRatedTv(this.page).subscribe(res=>{
       this.mostRatedTv = res
       console.log("Most Rated TV",this.mostRatedTv)
     })
   }
   
   getPopularTv() {
-    this.apiService.getPopularTv().subscribe(res=>{
+    this.apiService.getPopularTv(this.page).subscribe(res=>{
       this.popularTv = res
       console.log("popularTv",this.popularTv)
     })

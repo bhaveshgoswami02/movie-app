@@ -14,7 +14,7 @@
         </div>
         <ng-container
             *ngIf="mediaType=='trending' || mediaType=='mostRatedMovie' || mediaType=='upcommingMovies' || mediaType=='popularMovies' || moreLikeType=='movie'">
-            <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData.results"
+            <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData"
                 routerLink="/detail/movie/{{data.id}}">
                 <img src="{{imgUrl}}{{data.backdrop_path}}" (load)="data.loader = true" [hidden]="!data.loader" class="w-100" style="border-radius: 5px;" alt="">
                 <ng-container *ngIf="!data.loader">
@@ -23,7 +23,7 @@
             </div>
         </ng-container>
         <ng-container *ngIf="mediaType=='mostReatedTv' || mediaType=='popularTv' || moreLikeType=='tv'">
-            <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData.results"
+            <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData"
                 routerLink="/detail/tv/{{data.id}}">
                 <img src="{{imgUrl}}{{data.backdrop_path}}" (load)="data.loader = true" [hidden]="!data.loader" class="w-100" style="border-radius: 5px;" alt="">
                 <ng-container *ngIf="!data.loader">
@@ -38,6 +38,8 @@
         <app-skeleton [skeleton]="'all-media'"></app-skeleton>
     </div>
 </ng-container>
+
+<div infiniteScroll [infiniteScrollDisabled]="isCalled" [infiniteScrollDistance]="1" [immediateCheck]="true" [infiniteScrollThrottle]="50" (scrolled)="onScroll()"></div>
 
 <br><br><br>
 <app-tab></app-tab>

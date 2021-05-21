@@ -84,14 +84,14 @@ export class MovieDetailsComponent implements OnInit {
   }
 
   getSimilarMovie() {
-    this.api.getSimilarMovies(this.id).subscribe((res: any) => {
+    this.api.getSimilarMovies(this.id,1).subscribe((res: any) => {
       this.similarData = res.results
       console.log("similar movie", this.similarData)
     })
   }
 
   getSimilarTv() {
-    this.api.getSimilarTv(this.id).subscribe((res: any) => {
+    this.api.getSimilarTv(this.id,1).subscribe((res: any) => {
       this.similarData = res.results
       console.log("similar tv", this.similarData)
     })
