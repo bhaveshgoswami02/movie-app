@@ -30,6 +30,7 @@ const routes: Routes = [
             {
                 path: 'edit-profile',
                 loadChildren: () => import('./edit-profile/edit-profile.module').then(m => m.EditProfileComponentModule),
+                canActivate:[AuthGuardService]
             },
             {
                 path: 'detail/:mediaType/:id',
@@ -37,7 +38,8 @@ const routes: Routes = [
             },
             {
                 path: 'profile',
-                loadChildren: () => import('./profile/profile.module').then(m => m.ProfileComponentModule)
+                loadChildren: () => import('./profile/profile.module').then(m => m.ProfileComponentModule),
+                canActivate:[AuthGuardService]
             },
             {
                 path: 'search',
