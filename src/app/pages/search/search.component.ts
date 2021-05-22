@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -12,7 +14,7 @@ export class SearchComponent implements OnInit {
   allData:any = []
   imgUrl = environment.imgUrl
 
-  constructor(public api:ApiService) { }
+  constructor(public api:ApiService,public router:Router,public authService:AuthService) { }
 
   ngOnInit(): void {
   }
@@ -38,6 +40,14 @@ export class SearchComponent implements OnInit {
   blankSearchField(searchText:any) {
     searchText.value = null
     this.allData = []
+  }
+
+  routing(route:string) {
+    this.router.navigateByUrl("/"+route)
+  }
+
+  logout() {
+    this.authService.logout()
   }
 
 }

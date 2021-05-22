@@ -1,11 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~swiper/swiper-bundle';
+@import '../src/assets/scss/hero';
 
 :root {
     --primary: #0C111B;
     --primary-contrast: #fff;
     --secondary: #192133;
     --secondary-contrast: rgba(255, 255, 255, 0.8);
+}
+
+*::focus-visible {
+    outline: none !important;
+    border: none !important;
+}
+
+*::-webkit-scrollbar {
+    display: none !important;
 }
 
 body {
@@ -27,7 +37,7 @@ body {
 }
 
 .items:-webkit-scrollbar {
-    display: none;
+    display: none !important;
 }
 
 .items .item {
@@ -344,7 +354,7 @@ i {
 }
 
 .sign-in .content-wrapper {
-    padding-top: 20px;
+    padding-top: 30px;
     padding-left: 15px;
     padding-right: 15px;
     min-height: 100vh;
@@ -366,8 +376,8 @@ i {
 }
 
 .login-container .heading {
-    margin-top: 80px;
-    margin-bottom: 36px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .login-container .heading .heading-text {
@@ -587,13 +597,241 @@ textarea {
 }
 
 .toast {
-    position: fixed!important;
-    bottom: 0!important;
+    position: fixed !important;
+    bottom: 0 !important;
     width: 100%;
-    min-height: 50px;
-    background-color: white!important;
-    padding: 20px 25px!important;
-    color: var(--primary-contrast)!important;
-    box-shadow: 0 0 7px 0 rgb(0 0 0 / 25%)!important;
-    z-index: 999!important;
+    min-height: 25px;
+    padding: 20px 25px !important;
+    color: var(--primary-contrast) !important;
+    box-shadow: rgb(31 128 224 / 20%) 0px 3px 1px -2px, rgb(31 128 224 / 14%) 0px 2px 2px 0px, rgb(31 128 224 / 12%) 0px 1px 5px 0px!important;
+    z-index: 999 !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+
+/*------------------------------------------ Media Query ------------------------------------------*/
+
+/*------------------- Mobile Screen Start ---------------------------------*/
+
+@media (max-width:768px) {
+    .items {
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .items:-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .items .item {
+        min-width: 120px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .item img {
+        width: 100%;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .items .thumbnail-container {
+        min-width: 160px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .provider {
+        min-width: 160px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .thumbnail-container img {
+        width: 100%;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .seaction-heading {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .seaction-link {
+        font-size: 12px;
+        color: #1f80e0 !important;
+        font-weight: 500;
+    }
+
+    .search {
+        background-color: #fff;
+        border: 1px solid #c1c1c1;
+        border-radius: 5px;
+        padding-left: 10px;
+        margin-top: 10px;
+        width: 110%;
+    }
+
+}
+
+/*------------------- Mobile Screen End ---------------------------------*/
+
+/*------------------- Laptop Screen Start ---------------------------------*/
+@media (min-width: 1024px) {
+    .items {
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .items:-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .items .item {
+        min-width: 200px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .item img {
+        width: 100%;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .items .thumbnail-container {
+        min-width: 160px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .provider {
+        min-width: 160px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .thumbnail-container img {
+        width: 100%;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .seaction-heading {
+        font-size: 20px;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .seaction-link {
+        font-size: 16px;
+        color: #1f80e0 !important;
+        font-weight: 500;
+    }
+
+    .search {
+        background-color: #fff;
+        border: 1px solid #c1c1c1;
+        border-radius: 5px;
+        // padding: 10px;
+        padding-left: 10px;
+        margin-top: 10px;
+        width: 70%;
+    }
+
+}
+
+/*------------------- Laptop Screen End ---------------------------------*/
+
+
+/*------------------- Ipad Screen Start ---------------------------------*/
+@media (min-width:769px) and (max-width:1023px) {
+    .items {
+        display: flex;
+        overflow-x: auto;
+    }
+
+    .items:-webkit-scrollbar {
+        display: none !important;
+    }
+
+    .items .item {
+        min-width: 120px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .item img {
+        width: 100%;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .items .thumbnail-container {
+        min-width: 160px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .provider {
+        min-width: 160px;
+        text-align: center;
+        border-radius: 5px;
+        padding: 4px;
+    }
+
+    .items .thumbnail-container img {
+        width: 100%;
+        align-items: center;
+        border-radius: 5px;
+    }
+
+    .seaction-heading {
+        font-size: 16px;
+        color: #fff;
+        font-weight: 500;
+    }
+
+    .seaction-link {
+        font-size: 12px;
+        color: #1f80e0 !important;
+        font-weight: 500;
+    }
+
+    .search {
+        background-color: #fff;
+        border: 1px solid #c1c1c1;
+        border-radius: 5px;
+        // padding: 10px;
+        padding-left: 10px;
+        margin-top: 10px;
+        width: 70%;
+    }
+
+}
+
+/*------------------- Ipad Screen End ---------------------------------*/
+
+.navbar {
+    padding: 0rem 1rem !important;
+    background-color: var(--secondary) !important;
+    color: var(--primary-contrast) !important;
+    min-height: 56px;
+}
+
+.shadow {
+    box-shadow: rgb(31 128 224 / 20%) 0px 3px 1px -2px, rgb(31 128 224 / 14%) 0px 2px 2px 0px, rgb(31 128 224 / 12%) 0px 1px 5px 0px!important;
 }

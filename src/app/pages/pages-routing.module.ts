@@ -6,7 +6,6 @@ const routes: Routes = [
     {
         path: '',
         loadChildren: () => import('./pages.module').then(m => m.PagesComponentModule),
-        canActivate:[AuthGuardService],
         children: [
             {
                 path: '',
@@ -51,6 +50,7 @@ const routes: Routes = [
         ]
     }
 ];
+
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

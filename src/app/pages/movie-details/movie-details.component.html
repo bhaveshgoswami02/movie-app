@@ -19,38 +19,138 @@
 <app-header></app-header>
 <br><br>
 
-<div class="banner">
+<!-- <div class="banner">
     <img src="{{imgUrl}}{{data.backdrop_path}}" class="w-100" alt="">
     <div class="banner-footer">
         <div class="banner-title">
             <i class="fa fa-play"></i>&nbsp;&nbsp;<span>Watch Movie</span>
         </div>
     </div>
+</div> -->
+<div class="hero">
+    <div class="backdrop">
+        <div class="lazyloaded">
+            <ng-container *ngIf="videos.results[0]">
+                <button class="play border-0" type="button" (click)="openModal(videos.results[0].key)"
+                    data-toggle="modal" data-target="#exampleModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="55" height="55" viewBox="0 0 55 55">
+                        <circle cx="27.5" cy="27.5" r="26.75" fill="none" stroke="#fff" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="1.5" />
+                        <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="1.5" d="M20.97 40.81L40.64 27.5 20.97 14.19v26.62z" />
+                    </svg>
+                </button>
+            </ng-container>
+            <img class="lazyload image" src="https://image.tmdb.org/t/p/original/{{ data?.backdrop_path }}">
+        </div>
+    </div>
+    <div class="pane">
+        <div>
+            <div class="name">{{ data?.title }}</div>
+            <div class="meta">
+
+                <div class="info">
+                    <span class="rate">
+                        <i class="fa fa-star" style="color: #F7A300;"> star</i><span>{{ data?.vote_average }}</span> /10
+                    </span>
+                    <span style="font-size: 16px;"> {{data?.vote_count | numberWithCommas }} Reviews</span>
+                </div>
+            </div>
+            <div class="desc">{{ data?.overview }}</div>
+            <ng-container *ngIf="videos.results[0]">
+                <button type="button" class="button button--icon trailer" (click)="openModal(videos.results[0].key)"
+                    data-toggle="modal" data-target="#exampleModal">
+                    <span class="mr-2"><img src="assets/images/play.svg"></span>
+                    <span class="txt">Watch Trailer</span>
+                </button>
+            </ng-container>
+        </div>
+    </div>
 </div>
 
 <div class="description-section p-2">
-    <div class="header mt-3">
-        <p class="m-0">{{data.original_title ? data.original_title : data.name}} <span>({{data.vote_average}}) <i style="color: #F7A300;" class="fa fa-star"></i></span></p>
-        <!-- <p class="m-0">{{data.name}}</p> -->
-        <p class="m-0 text-muted sub-heading">{{data.tagline}}</p>
-        <a style="font-size: 12px;" class="mr-1" *ngFor="let genres of data.genres">{{genres.name}}</a>
-        <p style="margin-top: -10px;"><span class="year">{{data.release_date | date : 'mediumDate'}}</span> <span
-                *ngIf="data.status" class="year"> ({{data.status}})</span> <span class="adult" *ngIf="data.adult">.
-                18+</span></p>
+    <div class="d-block d-md-none d-lg-none">
+        <div class="header mt-3">
+            <p class="m-0">{{data.original_title ? data.original_title : data.name}} <span>({{data.vote_average}}) <i
+                        style="color: #F7A300;" class="fa fa-star"></i></span></p>
+            <p class="m-0 text-muted sub-heading">{{data.tagline}}</p>
+            <a style="font-size: 12px;" class="mr-1" *ngFor="let genres of data.genres">{{genres.name}}</a>
+            <p style="margin-top: -10px;"><span class="year">{{data.release_date | date : 'mediumDate'}}</span> <span
+                    *ngIf="data.status" class="year"> ({{data.status}})</span> <span class="adult" *ngIf="data.adult">.
+                    18+</span></p>
+        </div>
+        <div class="description">
+            {{data.overview}}
+        </div>
+        <div class="socail-icons">
+            <i class="fa fa-plus mx-2"></i>
+            <i class="fa fa-facebook-square mx-2"></i>
+            <i class="fa fa-twitter mx-2"></i>
+            <i class="fa fa-link mx-2"></i>
+        </div>
     </div>
-    <div class="description">
-        {{data.overview}}
-    </div>
-    <div class="socail-icons">
-        <i class="fa fa-plus mx-2"></i>
-        <i class="fa fa-facebook-square mx-2"></i>
-        <i class="fa fa-twitter mx-2"></i>
-        <i class="fa fa-link mx-2"></i>
+
+    <div class="container-fluid my-5 d-none d-md-block d-lg-block">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="poster">
+                    <img src="https://image.tmdb.org/t/p/w370_and_h556_bestv2/{{ data?.poster_path }}" class="w-100">
+                </div>
+            </div>
+            <div class="col-md-10 text-white px-4">
+                <div class="overview">
+                    <h2 class="title">Storyline</h2>
+                    <div>{{data?.overview}}</div>
+                </div>
+                <ul class="nolist mt-4 p-0">
+                    <li class="d-flex" *ngIf="data?.release_date">
+                        <div class="label">
+                            Released
+                        </div>
+                        <div class="value">
+                            {{ data?.release_date | date : 'mediumDate' }}
+                        </div>
+                    </li>
+                    <li class="d-flex" *ngIf="data?.runtime">
+                        <div class="label">
+                            Runtime
+                        </div>
+                        <div class="value">
+                            {{ data?.runtime | time }}
+                        </div>
+                    </li>
+                    <li class="d-flex" *ngIf="data?.budget">
+                        <div class="label">
+                            Budget
+                        </div>
+                        <div class="value">
+                            ${{ data?.budget | numberWithCommas }}
+                        </div>
+                    </li>
+                    <li class="d-flex" *ngIf="data?.revenue">
+                        <div class="label">
+                            Revenue
+                        </div>
+                        <div class="value">
+                            ${{ data?.revenue | numberWithCommas }}
+                        </div>
+                    </li>
+                    <li class="d-flex" *ngIf="data?.status">
+                        <div class="label">
+                            Status
+                        </div>
+                        <div class="value">
+                            {{data?.status}}
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 
 <ng-container *ngIf="providers?.buy?.length>0">
-    <div class="container-fluid mt-2">
+    <div class="container-fluid my-5">
         <p class="seaction-heading mb-1">Providers</p>
         <div class="items">
             <div class="thumbnail-container" *ngFor="let item of providers.buy">
@@ -64,8 +164,26 @@
     <div class="container-fluid mt-2">
         <p class="seaction-heading mb-1">Trailers & Extras</p>
         <div class="items">
-            <div class="thumbnail-container" *ngFor="let item of videos.results" data-toggle="modal"
+            <div class="thumbnail-container cursor-pointer" style="position: relative;" *ngFor="let item of videos.results" data-toggle="modal"
                 data-target="#exampleModal" (click)="openModal(item.key)">
+                <button class="border-0 p-0 d-none d-md-block d-lg-block" style="position: absolute;top: 50%;left: 40%;background: rgba(0,0,0,0.8);border-radius: 50%;" type="button" (click)="openModal(videos.results[0].key)"
+                    data-toggle="modal" data-target="#exampleModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 55 55">
+                        <circle cx="27.5" cy="27.5" r="26.75" fill="none" stroke="#fff" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="1.5" />
+                        <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="1.5" d="M20.97 40.81L40.64 27.5 20.97 14.19v26.62z" />
+                    </svg>
+                </button>
+                <button class="border-0 p-0 d-block d-md-none d-lg-none" style="position: absolute;top: 40%;left: 40%;background: rgba(0,0,0,0.8);border-radius: 50%;" type="button" (click)="openModal(videos.results[0].key)"
+                    data-toggle="modal" data-target="#exampleModal">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 55 55">
+                        <circle cx="27.5" cy="27.5" r="26.75" fill="none" stroke="#fff" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="1.5" />
+                        <path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="1.5" d="M20.97 40.81L40.64 27.5 20.97 14.19v26.62z" />
+                    </svg>
+                </button>
                 <img src="{{videoThumbmailFront}}{{item.key}}{{videoThumbmailBack}}" class="w-100" alt="">
             </div>
         </div>
@@ -82,25 +200,25 @@
             </div>
             <ng-container *ngIf="mediaType == 'mostRatedMovie' || mediaType == 'movie'">
                 <div class="col-4 text-right" routerLink="/media/moreLikeThis/movie/{{id}}">
-                    <a class="seaction-link">MORE</a>
+                    <a class="seaction-link cursor-pointer">MORE</a>
                 </div>
             </ng-container>
             <ng-container *ngIf="mediaType == 'mostReatedTv' || mediaType == 'tv'">
                 <div class="col-4 text-right" routerLink="/media/moreLikeThis/tv/{{id}}">
-                    <a class="seaction-link">MORE</a>
+                    <a class="seaction-link cursor-pointer">MORE</a>
                 </div>
             </ng-container>
         </div>
         <div class="row">
             <div class="items px-2">
                 <ng-container *ngIf="mediaType == 'mostReatedTv' || mediaType == 'tv'">
-                    <div class="item" *ngFor="let similar of similarData" (click)="getData(similar.id,mediaType)"
+                    <div class="item cursor-pointer" *ngFor="let similar of similarData" (click)="getData(similar.id,mediaType)"
                         routerLink="/detail/tv/{{similar.id}}">
                         <img src="{{imgUrl}}{{similar.poster_path}}">
                     </div>
                 </ng-container>
                 <ng-container *ngIf="mediaType == 'mostRatedMovie' || mediaType == 'movie'">
-                    <div class="item" *ngFor="let similar of similarData" (click)="getData(similar.id,mediaType)"
+                    <div class="item cursor-pointer" *ngFor="let similar of similarData" (click)="getData(similar.id,mediaType)"
                         routerLink="/detail/movie/{{similar.id}}">
                         <img src="{{imgUrl}}{{similar.poster_path}}">
                     </div>

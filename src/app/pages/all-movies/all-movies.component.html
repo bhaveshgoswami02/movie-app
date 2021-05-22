@@ -1,21 +1,27 @@
 <app-header></app-header>
 <br><br>
-<swiper [slidesPerView]="1" [slidesPerGroup]="1" [loop]="true" [autoplay]="true" [spaceBetween]="30"
-    [pagination]="false">
-    <ng-container *ngFor="let data of mostRatedMovie.results;">
-        <ng-template swiperSlide>
-            <img src="{{imgUrl}}{{data?.backdrop_path}}" (load)="data.loaded = true" [hidden]="!data.loaded" routerLink="/detail/movie/{{data.id}}" class="w-100" alt="">
-            <ng-container *ngIf="!data.loaded">
-                <app-skeleton [skeleton]="'banner'"></app-skeleton>
-            </ng-container>
-        </ng-template>
-    </ng-container>
-</swiper>
+<div class="d-block d-md-none d-lg-none">
+    <swiper [slidesPerView]="1" [slidesPerGroup]="1" [loop]="true" [autoplay]="true" [spaceBetween]="30"
+        [pagination]="false">
+        <ng-container *ngFor="let data of mostRatedMovie.results;">
+            <ng-template swiperSlide>
+                <img src="{{imgUrl}}{{data?.backdrop_path}}" (load)="data.loaded = true" [hidden]="!data.loaded" routerLink="/detail/movie/{{data.id}}" class="w-100" alt="">
+                <ng-container *ngIf="!data.loaded">
+                    <app-skeleton [skeleton]="'banner'"></app-skeleton>
+                </ng-container>
+            </ng-template>
+        </ng-container>
+    </swiper>
+</div>
+<ng-container>
+    <app-slider [allData]="mostRatedMovie.results"></app-slider>
+</ng-container>
+
 <ng-container *ngIf="mostRatedMovie?.length==0">
     <app-skeleton [skeleton]="'banner'"></app-skeleton>
 </ng-container>
 
-<div class="container-fluid my-3">
+<div class="container-fluid my-5">
     <div class="row py-0">
         <div class="col-8 text-left">
             <p class="seaction-heading m-0">
@@ -42,7 +48,7 @@
     </div>
 </div>
 
-<div class="container-fluid my-3">
+<div class="container-fluid my-5">
     <div class="row py-0">
         <div class="col-8 text-left">
             <p class="seaction-heading m-0">
@@ -70,7 +76,7 @@
     </div>
 </div>
 
-<div class="container-fluid my-3">
+<div class="container-fluid my-5">
     <div class="row py-0">
         <div class="col-8 text-left">
             <p class="seaction-heading m-0">

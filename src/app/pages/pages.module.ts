@@ -3,12 +3,14 @@ import { CommonModule } from '@angular/common';
 import { PagesComponent } from './pages.component';
 import { PagesRoutingModule } from './pages-routing.module';
 import { SharedModule } from '../share/shared.module';
+import { PipeModule } from '../pipe/pipe.module';
 
 @NgModule({
   imports: [
     CommonModule,
     PagesRoutingModule,
-    SharedModule
+    SharedModule,
+    PipeModule
   ],
   declarations: [PagesComponent]
 })

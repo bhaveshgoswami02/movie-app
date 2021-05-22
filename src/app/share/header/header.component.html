@@ -1,33 +1,69 @@
-<nav class="navbar navbar-light shadow-sm fixed-top">
-    <ng-container *ngIf="isHome == 'yes'">
-        <button style="font-size: 30px;margin-top: 4px;border: none;" for="openSidebarMenu"
-            class="navbar-toggler text-white m-0 p-0" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <label #toggler for="openSidebarMenu">
-                <i class="fa fa-bars" aria-hidden="true"></i>
-            </label>
-        </button>
-    </ng-container>
-    <!-- <i class="fa fa-arrow-left"></i> -->
-    <ng-container *ngIf="isHome != 'yes'">
-        <span style="font-size: 20px;border: none;">
-            <label class="my-auto" (click)="back()">
-                <i class="fa fa-arrow-left"></i> &nbsp;&nbsp;
-            </label>
-        </span>
-    </ng-container>
-    <a class="navbar-brand mt-2" routerLink="/">
-        <!-- <img style="margin-top: -10px;"
-            src="https://secure-media.hotstarext.com/web-assets/prod/images/brand-logos/disney-hotstar-logo-dark.svg"> -->
-        <img style="margin-top: -10px;"
-            src="assets/images/logo.png" width="65px">
-        <!-- <p class="text-white my-1">Logo</p> -->
-    </a>
+<!-- Laptop Screen -->
+<div class="d-none d-md-block d-lg-block fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" (click)="routing('')"><img src="assets/images/logo.png" width="70px" alt=""></a>
+        <ul class="navbar-nav ml-auto listMenu">
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer text-white" (click)="routing('')"
+                    routerLinkActive="router-link-active">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer text-white" (click)="routing('/movies')"
+                    routerLinkActive="router-link-active">Movies</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer text-white" (click)="routing('/tv')"
+                    routerLinkActive="router-link-active">TV Shows</a>
+            </li>
+            <li class="nav-item" *ngIf="!authService.getUid()">
+                <a class="nav-link cursor-pointer text-white" (click)="routing('/auth')"
+                    routerLinkActive="router-link-active">Login</a>
+            </li>
+            <li class="nav-item" *ngIf="authService.getUid()">
+                <a class="nav-link cursor-pointer text-white" (click)="logout()"
+                    routerLinkActive="router-link-active">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link cursor-pointer text-white" routerLinkActive="router-link-active">
+                    <i class="fa fa-search cursor-pointer" (click)="routing('/search')"></i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>
 
-    <i class="fa fa-search" (click)="routing('/search')"></i>
+<!-- Mobile Screen -->
+<nav class="navbar navbar-light shadow-sm fixed-top d-block d-md-none d-lg-none">
+    <div class="row">
+        <div class="col-1 my-auto">
+            <ng-container *ngIf="isHome == 'yes'">
+                <button style="font-size: 30px;margin-top: 4px;border: none;" for="openSidebarMenu"
+                    class="navbar-toggler text-white m-0 p-0" type="button" data-toggle="collapse"
+                    data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <label #toggler for="openSidebarMenu">
+                        <i class="fa fa-bars" aria-hidden="true"></i>
+                    </label>
+                </button>
+            </ng-container>
+            <ng-container *ngIf="isHome != 'yes'">
+                <span style="font-size: 20px;border: none;">
+                    <label class="my-auto" (click)="back()" style="position: relative;top: 12px;">
+                        <i class="fa fa-arrow-left"></i> &nbsp;&nbsp;
+                    </label>
+                </span>
+            </ng-container>
+        </div>
+        <div class="col-2 my-auto">
+            <a class="navbar-brand mt-2" routerLink="/">
+                <img style="margin-top: -10px;" src="assets/images/logo.png" width="65px">
+            </a>
+        </div>
+        <div class="col-8 pr-0 text-right my-auto">
+            <i class="fa fa-search cursor-pointer mx-auto" (click)="routing('/search')"></i>
+        </div>
+    </div>
 </nav>
-
 
 <div class="d-lg-none d-md-none d-block">
     <div class="body">
@@ -35,8 +71,8 @@
         <div style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);" id="sidebarMenu">
             <div class="row">
                 <div class="col-9 bg-primary p-0" style="height: 100vh;">
-                    <ng-container *ngIf="!authService.getCustomer()">
-                        <div class="row" (click)="routing('/auth')">
+                    <ng-container *ngIf="!authService.getUid()">
+                        <div class="row mt-2" (click)="routing('/auth')">
                             <div class="col-10 mx-auto">
                                 <p class="msg-1 ml-4">Login</p>
                                 <p class="msg-2 ml-4">For a better experience</p>
@@ -46,7 +82,7 @@
                             </div>
                         </div>
                     </ng-container>
-                    <ng-container *ngIf="authService.getCustomer()">
+                    <ng-container *ngIf="authService.getUid()">
                         <div class="row">
                             <div class="col-12 mx-auto mt-3">
                                 <div class="text-center">
@@ -91,7 +127,8 @@
                             </p>
                         </li>
                         <hr class="m-0">
-                        <li (click)="logout()" style="list-style-type: none;" class="py-2 px-4">
+                        <li (click)="logout()" *ngIf="authService.getUid()" style="list-style-type: none;"
+                            class="py-2 px-4">
                             <p class="pl-1 mb-0">
                                 &nbsp;&nbsp; Logout
                             </p>

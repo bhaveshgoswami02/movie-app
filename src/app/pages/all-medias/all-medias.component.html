@@ -1,20 +1,20 @@
 <app-header></app-header>
-<br><br><br>
+<br><br><br><br>
 
 <div class="container-fluid">
     <div class="row px-2">
         <div class="col-12 p-0 px-1">
-            <h2 class="title" *ngIf="mediaType=='trending'">Latest & Tranding</h2>
-            <h2 class="title" *ngIf="mediaType=='mostRatedMovie'">Most Rated Movie</h2>
-            <h2 class="title" *ngIf="mediaType=='mostReatedTv'">Most Reated Tv</h2>
-            <h2 class="title" *ngIf="mediaType=='upcommingMovies'">Upcomming Movies</h2>
-            <h2 class="title" *ngIf="mediaType=='popularTv'">Popular Tv</h2>
-            <h2 class="title" *ngIf="mediaType=='popularMovies'">Popular Movies</h2>
-            <h2 class="title" *ngIf="mediaType=='moreLikeThis'">More Like This</h2>
+            <h2 class="seaction-heading" *ngIf="mediaType=='trending'">Latest & Tranding</h2>
+            <h2 class="seaction-heading" *ngIf="mediaType=='mostRatedMovie'">Most Rated Movie</h2>
+            <h2 class="seaction-heading" *ngIf="mediaType=='mostReatedTv'">Most Reated Tv</h2>
+            <h2 class="seaction-heading" *ngIf="mediaType=='upcommingMovies'">Upcomming Movies</h2>
+            <h2 class="seaction-heading" *ngIf="mediaType=='popularTv'">Popular Tv</h2>
+            <h2 class="seaction-heading" *ngIf="mediaType=='popularMovies'">Popular Movies</h2>
+            <h2 class="seaction-heading" *ngIf="mediaType=='moreLikeThis'">More Like This</h2>
         </div>
         <ng-container
             *ngIf="mediaType=='trending' || mediaType=='mostRatedMovie' || mediaType=='upcommingMovies' || mediaType=='popularMovies' || moreLikeType=='movie'">
-            <div class="col-6 mx-auto my-1 p-0 px-1" *ngFor="let data of allData"
+            <div class="col-md-3 col-6 mx-auto my-1 p-0 px-1 cursor-pointer" *ngFor="let data of allData"
                 routerLink="/detail/movie/{{data.id}}">
                 <img src="{{imgUrl}}{{data.backdrop_path}}" (load)="data.loader = true" [hidden]="!data.loader" class="w-100" style="border-radius: 5px;" alt="">
                 <ng-container *ngIf="!data.loader">

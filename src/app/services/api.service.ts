@@ -56,6 +56,11 @@ export class ApiService {
     return this.http.get(url)
   }
 
+  getNowPlaying(page: number): Observable<any> {
+    let url = "https://api.themoviedb.org/3/movie/now_playing?api_key=" + environment.api + "&page=" + page + "&language=" + environment.language + "&region=" + environment.region
+    return this.http.get(url)
+  }
+
 
 
   //-------------------------------- TV's Fucntions -------------------------------//

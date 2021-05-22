@@ -41,4 +41,5 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl("/"+route)
     this.toggle()
   }
+
 }

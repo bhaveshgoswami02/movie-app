@@ -10,6 +10,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './share/shared.module';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { PipeModule } from './pipe/pipe.module';
 
 @NgModule({
   declarations: [
@@ -17,13 +20,16 @@ import { FormsModule } from '@angular/forms';
   ],
   imports: [
     BrowserModule,
+    CommonModule,
+    BrowserAnimationsModule,
     FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     AngularFireAuthModule,
     HttpClientModule,
-    SharedModule
+    SharedModule,
+    PipeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

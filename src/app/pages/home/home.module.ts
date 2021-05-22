@@ -10,7 +10,8 @@ import { SwiperModule } from 'swiper/angular';
     CommonModule,
     HomeRoutingModule,
     SharedModule,
-    SwiperModule
+    SwiperModule,
+
   ],
   declarations: [HomeComponent]
 })
