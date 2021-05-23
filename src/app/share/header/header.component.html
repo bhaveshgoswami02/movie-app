@@ -20,8 +20,8 @@
                     routerLinkActive="router-link-active">Login</a>
             </li>
             <li class="nav-item" *ngIf="authService.getUid()">
-                <a class="nav-link cursor-pointer text-white" (click)="logout()"
-                    routerLinkActive="router-link-active">Logout</a>
+                <a class="nav-link cursor-pointer text-white" (click)="routing('/profile')"
+                    routerLinkActive="router-link-active">Profile</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link cursor-pointer text-white" routerLinkActive="router-link-active">

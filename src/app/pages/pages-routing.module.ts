@@ -35,6 +35,7 @@ const routes: Routes = [
             {
                 path: 'detail/:mediaType/:id',
                 loadChildren: () => import('./movie-details/movie-details.module').then(m => m.MovieDetailsComponentModule),
+                canActivate:[AuthGuardService]
             },
             {
                 path: 'profile',

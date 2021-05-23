@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~swiper/swiper-bundle';
 @import '../src/assets/scss/hero';
+@import '../src/assets/scss/listing';
 
 :root {
     --primary: #0C111B;
@@ -697,6 +698,7 @@ textarea {
 
     .items .item {
         min-width: 200px;
+        max-width: 200px;
         text-align: center;
         border-radius: 5px;
         padding: 4px;

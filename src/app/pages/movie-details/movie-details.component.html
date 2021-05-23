@@ -164,10 +164,13 @@
     <div class="container-fluid mt-2">
         <p class="seaction-heading mb-1">Trailers & Extras</p>
         <div class="items">
-            <div class="thumbnail-container cursor-pointer" style="position: relative;" *ngFor="let item of videos.results" data-toggle="modal"
-                data-target="#exampleModal" (click)="openModal(item.key)">
-                <button class="border-0 p-0 d-none d-md-block d-lg-block" style="position: absolute;top: 50%;left: 40%;background: rgba(0,0,0,0.8);border-radius: 50%;" type="button" (click)="openModal(videos.results[0].key)"
-                    data-toggle="modal" data-target="#exampleModal">
+            <div class="thumbnail-container cursor-pointer" style="position: relative;"
+                *ngFor="let item of videos.results" data-toggle="modal" data-target="#exampleModal"
+                (click)="openModal(item.key)">
+                <button class="border-0 p-0 d-none d-md-block d-lg-block"
+                    style="position: absolute;top: 50%;left: 40%;background: rgba(0,0,0,0.8);border-radius: 50%;"
+                    type="button" (click)="openModal(videos.results[0].key)" data-toggle="modal"
+                    data-target="#exampleModal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="45" height="45" viewBox="0 0 55 55">
                         <circle cx="27.5" cy="27.5" r="26.75" fill="none" stroke="#fff" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="1.5" />
@@ -175,8 +178,10 @@
                             stroke-width="1.5" d="M20.97 40.81L40.64 27.5 20.97 14.19v26.62z" />
                     </svg>
                 </button>
-                <button class="border-0 p-0 d-block d-md-none d-lg-none" style="position: absolute;top: 40%;left: 40%;background: rgba(0,0,0,0.8);border-radius: 50%;" type="button" (click)="openModal(videos.results[0].key)"
-                    data-toggle="modal" data-target="#exampleModal">
+                <button class="border-0 p-0 d-block d-md-none d-lg-none"
+                    style="position: absolute;top: 40%;left: 40%;background: rgba(0,0,0,0.8);border-radius: 50%;"
+                    type="button" (click)="openModal(videos.results[0].key)" data-toggle="modal"
+                    data-target="#exampleModal">
                     <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 55 55">
                         <circle cx="27.5" cy="27.5" r="26.75" fill="none" stroke="#fff" stroke-linecap="round"
                             stroke-linejoin="round" stroke-width="1.5" />
@@ -212,15 +217,43 @@
         <div class="row">
             <div class="items px-2">
                 <ng-container *ngIf="mediaType == 'mostReatedTv' || mediaType == 'tv'">
-                    <div class="item cursor-pointer" *ngFor="let similar of similarData" (click)="getData(similar.id,mediaType)"
-                        routerLink="/detail/tv/{{similar.id}}">
-                        <img src="{{imgUrl}}{{similar.poster_path}}">
+                    <div class="item cursor-pointer" *ngFor="let similar of similarData"
+                        (click)="getData(similar.id,mediaType)" routerLink="/detail/tv/{{similar.id}}">
+                        <!-- <img src="{{imgUrl}}{{similar.poster_path}}"> -->
+                        <div class="listing-item-style">
+                            <div class="overlay">
+                                <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                            </div>
+                            <img src="{{imgUrl}}{{similar.poster_path}}" (load)="similar.loaded = true"
+                                [hidden]="!similar.loaded">
+                            <h6>{{ similar?.original_name ? similar?.original_name : similar?.name}}</h6>
+                            <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                    star</i><span>{{similar?.vote_average}}</span>/10</p>
+                            <p class="year"><span>{{similar?.first_air_date | date: 'yyyy'}}</span>
+                                <ng-container *ngIf="!similar.loaded">
+                                    <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                                </ng-container>
+                        </div>
                     </div>
                 </ng-container>
                 <ng-container *ngIf="mediaType == 'mostRatedMovie' || mediaType == 'movie'">
-                    <div class="item cursor-pointer" *ngFor="let similar of similarData" (click)="getData(similar.id,mediaType)"
-                        routerLink="/detail/movie/{{similar.id}}">
-                        <img src="{{imgUrl}}{{similar.poster_path}}">
+                    <div class="item cursor-pointer" *ngFor="let similar of similarData"
+                        (click)="getData(similar.id,mediaType)" routerLink="/detail/movie/{{similar.id}}">
+                        <!-- <img src="{{imgUrl}}{{similar.poster_path}}"> -->
+                        <div class="listing-item-style">
+                            <div class="overlay">
+                                <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                            </div>
+                            <img src="{{imgUrl}}{{similar.poster_path}}" (load)="similar.loaded = true"
+                                [hidden]="!similar.loaded">
+                            <h6>{{ similar?.original_name ? similar?.original_name : similar?.original_title}}</h6>
+                            <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                    star</i><span>{{similar?.vote_average}}</span>/10</p>
+                            <p class="year"><span>{{similar?.first_air_date | date: 'yyyy'}}</span>
+                                <ng-container *ngIf="!similar.loaded">
+                                    <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                                </ng-container>
+                        </div>
                     </div>
                 </ng-container>
             </div>
