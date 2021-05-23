@@ -34,8 +34,52 @@
             <a class="seaction-link" routerLink="/media/popularMovies">MORE</a>
         </div>
     </div>
-    <div class="row">
-        <div class="items px-2">
+    <div class="d-block d-lg-none d-md-none">
+        <swiper [slidesPerView]="3" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of popularMovies.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="detail/movie/{{data.id}}">
+                        <div class="overlay">
+                            <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                        </div>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.original_title}}</h6>
+                        <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+    <div class="d-none d-lg-block d-md-block">
+        <swiper [slidesPerView]="8" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of popularMovies.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="detail/movie/{{data.id}}">
+                        <div class="overlay">
+                            <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                        </div>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.original_title}}</h6>
+                        <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+    <!-- <div class="row">
+         <div class="items px-2">
             <div class="item" *ngFor="let data of popularMovies.results" routerLink="detail/movie/{{data.id}}">
                 <div class="listing-item-style">
                     <div class="overlay">
@@ -54,144 +98,267 @@
             <ng-container *ngIf="popularMovies.length==0">
                 <app-skeleton [skeleton]="'poster'"></app-skeleton>
             </ng-container>
+        </div> 
+    </div>-->
+</div>
+
+<div class="container-fluid my-5">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Latests & Trending
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/trending">MORE</a>
         </div>
     </div>
-
-    <div class="container-fluid my-5">
-        <div class="row py-0">
-            <div class="col-8 text-left">
-                <p class="seaction-heading m-0">
-                    Latests & Trending
-                </p>
-            </div>
-            <div class="col-4 text-right">
-                <a class="seaction-link" routerLink="/media/trending">MORE</a>
-            </div>
-        </div>
-        <div class="row">
-            <ng-container *ngIf="trending.length!=0">
-                <div class="items px-2">
-                    <!-- <div class="item" *ngFor="let latest of trending.results" routerLink="detail/movie/{{latest.id}}">
-                    <img src="{{imgUrl}}{{latest.poster_path}}" (load)="latest.loaded = true" [hidden]="!latest.loaded"
-                        class="w-100">
-                    <ng-container *ngIf="!latest.loaded">
-                        <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
-                    </ng-container>
-                </div> -->
-                    <div class="item" *ngFor="let latest of trending.results" routerLink="detail/movie/{{latest.id}}">
-                        <div class="listing-item-style">
-                            <div class="overlay">
-                                <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
-                            </div>
-                            <img src="{{imgUrl}}{{latest.poster_path}}" (load)="latest.loaded = true"
-                                [hidden]="!latest.loaded">
-                            <h6>{{ latest?.original_name ? latest?.original_name : latest?.original_title}}</h6>
-                            <p class="rate"><i class="fa fa-star" style="color:#dcf836">
-                                    star</i><span>{{latest?.vote_average}}</span>/10</p>
-                            <p class="year"><span>{{latest?.first_air_date | date: 'yyyy'}}</span>
-                                <ng-container *ngIf="!latest.loaded">
-                                    <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
-                                </ng-container>
-                        </div>
-                    </div>
-                </div>
-            </ng-container>
-
-            <ng-container *ngIf="trending.length==0">
-                <app-skeleton [skeleton]="'poster'"></app-skeleton>
-            </ng-container>
-        </div>
-    </div>
-
-    <div class="container-fluid my-5">
-        <div class="row py-0">
-            <div class="col-8 text-left">
-                <p class="seaction-heading m-0">
-                    Upcomming Movies
-                </p>
-            </div>
-            <div class="col-4 text-right">
-                <a class="seaction-link" routerLink="/media/upcommingMovies">MORE</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="items px-2">
-                <div class="item" *ngFor="let upcomming of UpcommingMovies.results"
-                    routerLink="detail/mostRatedMovie/{{upcomming.id}}">
-                    <div class="listing-item-style">
+    <div class="d-block d-lg-none d-md-none">
+        <swiper [slidesPerView]="3" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of trending.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/movie/{{data.id}}">
                         <div class="overlay">
                             <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
                         </div>
-                        <img src="{{imgUrl}}{{upcomming.poster_path}}" (load)="upcomming.loaded = true"
-                            [hidden]="!upcomming.loaded">
-                        <h6>{{ upcomming?.original_name ? upcomming?.original_name : upcomming?.original_title}}</h6>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.original_title}}</h6>
                         <p class="rate"><i class="fa fa-star" style="color:#dcf836">
-                                star</i><span>{{upcomming?.vote_average}}</span>/10</p>
-                        <p class="year"><span>{{upcomming?.first_air_date | date: 'yyyy'}}</span>
-                            <ng-container *ngIf="!upcomming.loaded">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
                                 <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
                             </ng-container>
                     </div>
-                </div>
-            </div>
-            <ng-container *ngIf="UpcommingMovies.length==0">
-                <app-skeleton [skeleton]="'poster'"></app-skeleton>
+                </ng-template>
             </ng-container>
-        </div>
+        </swiper>
     </div>
-
-    <div class="container-fluid my-5" *ngIf="authService.getUid()">
-        <div class="row py-0">
-            <div class="col-8 text-left">
-                <p class="seaction-heading m-0">
-                    Most Rated Movies
-                </p>
-            </div>
-            <div class="col-4 text-right">
-                <a class="seaction-link" routerLink="/media/mostRatedMovie">MORE</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="items px-2">
-                <div class="item" *ngFor="let rated of mostRatedMovie.results"
-                    routerLink="detail/mostRatedMovie/{{rated.id}}">
-                    <div class="listing-item-style">
+    <div class="d-none d-lg-block d-md-block">
+        <swiper [slidesPerView]="8" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of trending.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/movie/{{data.id}}">
                         <div class="overlay">
                             <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
                         </div>
-                        <img src="{{imgUrl}}{{rated.poster_path}}" (load)="rated.loaded = true"
-                            [hidden]="!rated.loaded">
-                        <h6>{{ rated?.original_name ? rated?.original_name : rated?.original_title}}</h6>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.original_title}}</h6>
                         <p class="rate"><i class="fa fa-star" style="color:#dcf836">
-                                star</i><span>{{rated?.vote_average}}</span>/10</p>
-                        <p class="year"><span>{{rated?.first_air_date | date: 'yyyy'}}</span>
-                            <ng-container *ngIf="!rated.loaded">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
                                 <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
                             </ng-container>
                     </div>
-                </div>
-            </div>
-            <ng-container *ngIf="mostRatedMovie.length==0">
-                <app-skeleton [skeleton]="'poster'"></app-skeleton>
+                </ng-template>
             </ng-container>
+        </swiper>
+    </div>
+</div>
+
+<div class="container-fluid my-5">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Upcomming Movies
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/upcommingMovies">MORE</a>
         </div>
     </div>
-
-    <div class="container-fluid my-5">
-        <div class="row py-0">
-            <div class="col-8 text-left">
-                <p class="seaction-heading m-0">
-                    Popular TV Shoes
-                </p>
-            </div>
-            <div class="col-4 text-right">
-                <a class="seaction-link" routerLink="/media/popularTv">MORE</a>
+    <!-- <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let upcomming of UpcommingMovies.results"
+                routerLink="detail/mostRatedMovie/{{upcomming.id}}">
+                <div class="listing-item-style">
+                    <div class="overlay">
+                        <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                    </div>
+                    <img src="{{imgUrl}}{{upcomming.poster_path}}" (load)="upcomming.loaded = true"
+                        [hidden]="!upcomming.loaded">
+                    <h6>{{ upcomming?.original_name ? upcomming?.original_name : upcomming?.original_title}}</h6>
+                    <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                            star</i><span>{{upcomming?.vote_average}}</span>/10</p>
+                    <p class="year"><span>{{upcomming?.first_air_date | date: 'yyyy'}}</span>
+                        <ng-container *ngIf="!upcomming.loaded">
+                            <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                        </ng-container>
+                </div>
             </div>
         </div>
-        <div class="row">
-            <div class="items px-2">
-                <div class="item" *ngFor="let data of popularTv.results" routerLink="detail/tv/{{data.id}}">
-                    <div class="listing-item-style">
+        <ng-container *ngIf="UpcommingMovies.length==0">
+            <app-skeleton [skeleton]="'poster'"></app-skeleton>
+        </ng-container>
+    </div> -->
+    <div class="d-block d-lg-none d-md-none">
+        <swiper [slidesPerView]="3" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of UpcommingMovies.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/movie/{{data.id}}">
+                        <div class="overlay">
+                            <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                        </div>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.original_title}}</h6>
+                        <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+    <div class="d-none d-lg-block d-md-block">
+        <swiper [slidesPerView]="8" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of UpcommingMovies.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/movie/{{data.id}}">
+                        <div class="overlay">
+                            <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                        </div>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.original_title}}</h6>
+                        <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+</div>
+
+<div class="container-fluid my-5" *ngIf="authService.getUid()">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Most Rated Movies
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/mostRatedMovie">MORE</a>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let rated of mostRatedMovie.results"
+                routerLink="detail/mostRatedMovie/{{rated.id}}">
+                <div class="listing-item-style">
+                    <div class="overlay">
+                        <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                    </div>
+                    <img src="{{imgUrl}}{{rated.poster_path}}" (load)="rated.loaded = true" [hidden]="!rated.loaded">
+                    <h6>{{ rated?.original_name ? rated?.original_name : rated?.original_title}}</h6>
+                    <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                            star</i><span>{{rated?.vote_average}}</span>/10</p>
+                    <p class="year"><span>{{rated?.first_air_date | date: 'yyyy'}}</span>
+                        <ng-container *ngIf="!rated.loaded">
+                            <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                        </ng-container>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="mostRatedMovie.length==0">
+            <app-skeleton [skeleton]="'poster'"></app-skeleton>
+        </ng-container>
+    </div> -->
+    <div class="d-block d-lg-none d-md-none">
+        <swiper [slidesPerView]="3" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of mostRatedMovie.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/movie/{{data.id}}">
+                        <div class="overlay">
+                            <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                        </div>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.original_title}}</h6>
+                        <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+    <div class="d-none d-lg-block d-md-block">
+        <swiper [slidesPerView]="8" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of mostRatedMovie.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/movie/{{data.id}}">
+                        <div class="overlay">
+                            <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                        </div>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.original_title}}</h6>
+                        <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+</div>
+
+<div class="container-fluid my-5">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Popular TV Shoes
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/popularTv">MORE</a>
+        </div>
+    </div>
+    <!-- <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let data of popularTv.results" routerLink="detail/tv/{{data.id}}">
+                <div class="listing-item-style">
+                    <div class="overlay">
+                        <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                    </div>
+                    <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                    <h6>{{ data?.original_name ? data?.original_name : data?.name}}</h6>
+                    <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                            star</i><span>{{data?.vote_average}}</span>/10</p>
+                    <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                        <ng-container *ngIf="!data.loaded">
+                            <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                        </ng-container>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="popularTv.length==0">
+            <app-skeleton [skeleton]="'poster'"></app-skeleton>
+        </ng-container>
+    </div> -->
+    <div class="d-block d-lg-none d-md-none">
+        <swiper [slidesPerView]="3" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of popularTv.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/tv/{{data.id}}">
                         <div class="overlay">
                             <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
                         </div>
@@ -204,47 +371,111 @@
                                 <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
                             </ng-container>
                     </div>
-                </div>
-            </div>
-            <ng-container *ngIf="popularTv.length==0">
-                <app-skeleton [skeleton]="'poster'"></app-skeleton>
+                </ng-template>
             </ng-container>
-        </div>
+        </swiper>
     </div>
-
-    <div class="container-fluid my-5" *ngIf="authService.getUid()">
-        <div class="row py-0">
-            <div class="col-8 text-left">
-                <p class="seaction-heading m-0">
-                    Most Rated TV
-                </p>
-            </div>
-            <div class="col-4 text-right">
-                <a class="seaction-link" routerLink="/media/mostReatedTv">MORE</a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="items px-2">
-                <div class="item" *ngFor="let tv of mostRatedTv.results" routerLink="detail/mostReatedTv/{{tv.id}}">
-                    <div class="listing-item-style" [routerLink]="['/tv/', tv.id]">
+    <div class="d-none d-lg-block d-md-block">
+        <swiper [slidesPerView]="8" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of popularTv.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/tv/{{data.id}}">
                         <div class="overlay">
                             <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
                         </div>
-                        <img src="{{imgUrl}}{{tv.poster_path}}" (load)="tv.loaded = true" [hidden]="!tv.loaded">
-                        <h6>{{ tv?.original_name }}</h6>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.name}}</h6>
                         <p class="rate"><i class="fa fa-star" style="color:#dcf836">
-                                star</i><span>{{tv?.vote_average}}</span>/10</p>
-                        <p class="year"><span>{{tv?.first_air_date | date: 'yyyy'}}</span>
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
                     </div>
-                    <ng-container *ngIf="!tv.loaded">
-                        <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
-                    </ng-container>
-                </div>
-            </div>
-            <ng-container *ngIf="mostRatedTv.loaded==0">
-                <app-skeleton [skeleton]="'poster'"></app-skeleton>
+                </ng-template>
             </ng-container>
+        </swiper>
+    </div>
+</div>
+
+<div class="container-fluid my-5" *ngIf="authService.getUid()">
+    <div class="row py-0">
+        <div class="col-8 text-left">
+            <p class="seaction-heading m-0">
+                Most Rated TV
+            </p>
+        </div>
+        <div class="col-4 text-right">
+            <a class="seaction-link" routerLink="/media/mostReatedTv">MORE</a>
         </div>
     </div>
-    <br><br>
-    <app-tab></app-tab>
+    <!-- <div class="row">
+        <div class="items px-2">
+            <div class="item" *ngFor="let tv of mostRatedTv.results" routerLink="/detail/mostReatedTv/{{tv.id}}">
+                <div class="listing-item-style">
+                    <div class="overlay">
+                        <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                    </div>
+                    <img src="{{imgUrl}}{{tv.poster_path}}" (load)="tv.loaded = true" [hidden]="!tv.loaded">
+                    <h6>{{ tv?.original_name }}</h6>
+                    <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                            star</i><span>{{tv?.vote_average}}</span>/10</p>
+                    <p class="year"><span>{{tv?.first_air_date | date: 'yyyy'}}</span>
+                </div>
+                <ng-container *ngIf="!tv.loaded">
+                    <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                </ng-container>
+            </div>
+        </div>
+        <ng-container *ngIf="mostRatedTv.loaded==0">
+            <app-skeleton [skeleton]="'poster'"></app-skeleton>
+        </ng-container>
+    </div> -->
+    <div class="d-block d-lg-none d-md-none">
+        <swiper [slidesPerView]="3" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of mostRatedTv.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/mostReatedTv/{{data.id}}">
+                        <div class="overlay">
+                            <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                        </div>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.name}}</h6>
+                        <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+    <div class="d-none d-lg-block d-md-block">
+        <swiper [slidesPerView]="8" [navigation]="true" [scrollbar]="{ draggable: true }" [spaceBetween]="5"
+            [virtual]="true">
+            <ng-container *ngFor="let data of mostRatedTv.results; index as i">
+                <ng-template swiperSlide>
+                    <div class="listing-item-style" routerLink="/detail/mostReatedTv/{{data.id}}">
+                        <div class="overlay">
+                            <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                        </div>
+                        <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                        <h6>{{ data?.original_name ? data?.original_name : data?.name}}</h6>
+                        <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                                star</i><span>{{data?.vote_average}}</span>/10</p>
+                        <p class="year"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                            <ng-container *ngIf="!data.loaded">
+                                <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                            </ng-container>
+                    </div>
+                </ng-template>
+            </ng-container>
+        </swiper>
+    </div>
+</div>
+<br><br>
+<app-tab></app-tab>

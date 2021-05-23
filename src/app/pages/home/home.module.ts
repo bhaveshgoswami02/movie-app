@@ -11,7 +11,6 @@ import { SwiperModule } from 'swiper/angular';
     HomeRoutingModule,
     SharedModule,
     SwiperModule,
-
   ],
   declarations: [HomeComponent]
 })

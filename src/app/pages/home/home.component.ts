@@ -8,11 +8,12 @@ import SwiperCore, {
   Scrollbar,
   A11y,
   Autoplay,
-  EffectFade
+  EffectFade,
+  Virtual
 } from 'swiper/core';
 
 // install Swiper modules
-SwiperCore.use([Navigation, Pagination, Scrollbar, EffectFade, Autoplay, A11y]);
+SwiperCore.use([Navigation, Pagination, Scrollbar, EffectFade, Autoplay, A11y,Virtual]);
 
 
 @Component({
