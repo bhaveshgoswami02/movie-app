@@ -123,19 +123,31 @@
 
 <div class="container-fluid">
     <div class="row px-2">
-        <div class="col-12 p-0 px-1">
+        <div class="col-12 p-0 px-1 mt-5">
             <h2 class="title" *ngIf="allData.length>0">Results</h2>
         </div>
         <ng-container>
-            <div class="col-md-3 col-6 my-2 p-0 px-2 cursor-pointer" *ngFor="let data of allData.results"
+            <div class="col-md-2 col-6 my-2 p-0 px-2 cursor-pointer" *ngFor="let data of allData.results"
                 routerLink="/detail/{{data.media_type}}/{{data.id}}">
-                <img src="{{imgUrl}}{{data.backdrop_path}}" (load)="data.loader = true" [hidden]="!data.loader"
+                <!-- <img src="{{imgUrl}}{{data.backdrop_path}}" (load)="data.loader = true" [hidden]="!data.loader"
                     class="w-100" style="border-radius: 5px 5px 0 0;" alt="">
-                <!-- <p class="text-white m-0">{{data.name}}</p> -->
                 <ng-container *ngIf="!data.loader">
                     <app-skeleton [skeleton]="'single-media'"></app-skeleton>
                 </ng-container>
-                <span class="text-white">{{data.name ? data.name : data.title}}</span>
+                <span class="text-white">{{data.name ? data.name : data.title}}</span> -->
+                <div class="listing-item-style">
+                    <div class="overlay">
+                        <div class="hover"><i class="fa fa-play"></i>&nbsp;&nbsp;PLAY NOW</div>
+                    </div>
+                    <img src="{{imgUrl}}{{data.poster_path}}" (load)="data.loaded = true" [hidden]="!data.loaded">
+                    <h6>{{ data?.name ? data?.name : data?.title}}</h6>
+                    <p class="rate"><i class="fa fa-star" style="color:#dcf836">
+                            star</i><span>{{data?.vote_average}}</span>/10</p>
+                    <p class="year" *ngIf="data.loaded"><span>{{data?.first_air_date | date: 'yyyy'}}</span>
+                        <!-- <ng-container *ngIf="!data.loaded">
+                            <app-skeleton [skeleton]="'single-poster'"></app-skeleton>
+                        </ng-container> -->
+                </div>
             </div>
         </ng-container>
 
