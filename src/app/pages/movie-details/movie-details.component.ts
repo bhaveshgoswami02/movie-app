@@ -21,7 +21,7 @@ export class MovieDetailsComponent implements OnInit {
   episodeGroups: any = []
   youTubeLink: any = ""
   providers: any = []
-
+  showVideo=false
   constructor(public api: ApiService, public route: ActivatedRoute, public domSanitizer: DomSanitizer, public router: Router) { }
 
   ngOnInit(): void {
@@ -109,6 +109,7 @@ export class MovieDetailsComponent implements OnInit {
     console.log("templink", tempLink)
     this.youTubeLink = this.domSanitizer.bypassSecurityTrustResourceUrl(tempLink)
     console.log("youtubelink", this.youTubeLink)
+    this.showVideo=true
   }
 
   getMovieProviders() {
@@ -124,6 +125,16 @@ export class MovieDetailsComponent implements OnInit {
       console.log("tv providers",res)
       console.log("tv providers",this.providers)
     })
+  }
+
+
+  pauseVideo(){
+    this.showVideo=false
+    //document.getElementById("trailer"). contentWindow.postMessage('{"event":"command","func":"' + 'stopVideo' + '","args":""}', '*');
+  }
+
+  playVideo(){
+    this.showVideo=true
   }
 
 }
